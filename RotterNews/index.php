@@ -19,7 +19,7 @@ require_once("RotterNews.php");
     <form action="javascript:rotterRefresh()"><button>Refresh</button></form>
   </div>
   <div class="news-container" id="news-container">
-    <?php print getUpdate(); ?>
+    <?php print get_update(); ?>
   </div>
   <!-- Twitter feed -->
   <a class="twitter-timeline" href="https://twitter.com/moo64c/lists/news" data-widget-id="497527332211421184">Tweets from https://twitter.com/moo64c/lists/news</a>

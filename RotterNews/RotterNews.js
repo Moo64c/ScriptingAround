@@ -24,11 +24,21 @@ function rotterRefresh() {
   });
 }
 
-// next version
-// first message in topic opens at js request.
-// Auto refresh rotter?
+function getFirstPost(url, id) {
+  var container = $("#content-holder-" + id);
+  // Leave an updating image in the meantime.
+  container.html('<img src="updating.gif">');
 
-function getFirstPost(url) {
+  var request = $.ajax({
+    url: "RotterUpdate.php",
+    type: "POST",
+    data: { firstPost: 1, url : url },
+    dataType: "html"
+  });
+
+  request.done(function( msg ) {
+    container.html( msg );
+  });
 }
 
 function openInNewWindow(url) {
@@ -37,7 +47,5 @@ function openInNewWindow(url) {
 }
 
 // next next version
+// Auto refresh rotter
 // images from topic open into a neato frame.
-
-//var result = $.ajax("http://rotter.net/scoopscache.html").responseXML;
-//document.write(result);

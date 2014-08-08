@@ -6,9 +6,9 @@
  */ 
 require_once("RotterNews.php");
 
-if ($_GET['firstPost'] == 1) {
-  print get_first_post($_GET['url']);
+if ($_POST['firstPost'] == 1) {
+  print get_first_post($_POST['url']);
   return;
 }
 
-print getUpdate();
+print get_update();

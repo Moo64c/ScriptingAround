@@ -25,12 +25,13 @@ function innerXML($node) {
  * @return string
  *  HTML including the actual news.
  */
-function getUpdate($request_url = BASE_URL) {
+function get_update($request_url = BASE_URL) {
   $doc = get_DOM_from_url($request_url);
 
   $links = $doc->getElementsByTagName('a');
 
   $print = "";
+  $id = 1;
   for ($i = 0; $i < $links->length; $i++) {
     $link = $links->item($i);
     $url =  $link->attributes->getNamedItem("href")->textContent;
@@ -46,7 +47,7 @@ function getUpdate($request_url = BASE_URL) {
           $href = urlencode($attribute->value);
 
           // Change the link clicked to javascript.
-          $attribute->value ='javascript:getFirstPost("' . $href . '")';
+          $attribute->value ='javascript:getFirstPost("' . $href . '",'. $id . ')';
 
           // Add external link to the original post.
           $external_link = $doc->createElement("a");
@@ -68,8 +69,8 @@ function getUpdate($request_url = BASE_URL) {
       $row->removeChild($row->firstChild->nextSibling->nextSibling->nextSibling);
 
       $print .=  innerXML($row);
-      $print .=  '</div>';
-
+      $print .=  '<div id="content-holder-'. $id . '"></div></div>';
+      $id++;
     }
   }
   return $print;
@@ -96,6 +97,15 @@ function get_DOM_from_url($request_url) {
 }
 
 function get_first_post($url) {
-  $html_base = get_DOM_from_url($url);
+  $doc = get_DOM_from_url($url);
+  // Find the main "div" and work from there.
+  $tables_rows = $doc->getElementsByTagName('tr');
+  for($i = 0; $i < $tables_rows->length; $i++) {
+    $table_row = $tables_rows->item($i);
+    if ($table_row->attributes->getNamedItem("bgcolor")->nodeValue == "#FDFDFD" ) {
+      print innerXML($table_row);
+      break;
+    }
+  }
 }
 
