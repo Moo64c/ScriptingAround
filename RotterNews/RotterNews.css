@@ -1,0 +1,36 @@
+
+html {
+  direction: rtl;
+  background: black;
+  color: white;
+}
+
+.news-container {
+  float:right;
+  width: 50%;
+  margin-left:25px;
+}
+
+.news-item {
+  line-height:30px;
+  border: 1px solid gold;
+  width: 100%;
+  margin: auto;
+  margin-bottom: 10px;
+}
+
+.news-item a {
+  font-size: 18px;
+  font-family: arial, sans-serif;
+  color: white;
+
+}
+
+.news-container .news-item a:visited {
+  font-size: 10px !important;;
+  color: darkgrey;
+}
+
+font[color="000099"], font[color="#000099"]{
+  color: greenyellow!important;
+}
