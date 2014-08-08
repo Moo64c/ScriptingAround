@@ -76,5 +76,4 @@ function closeInnerContent(id) {
 
 // next version
 // Auto refresh rotter
-//
 // images from topic open into a neato frame.
