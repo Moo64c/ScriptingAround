@@ -11,6 +11,10 @@ html {
   margin-left:25px;
 }
 
+* {
+  border-radius: 10px;
+}
+
 .news-item {
   line-height:30px;
   border: 1px solid gold;
@@ -54,4 +58,16 @@ span {
 
 #rotter-refresh {
   float: right;
+}
+
+#rotter-refresh button {
+  margin: 10px;
+  height: 100px;
+  width:100px;
+  color: white;
+  font-weight: bold;
+  background-image: url('refresh.png');
+  background-repeat: no-repeat;
+  background-position: right top;
+  background-size: 100px 100px;
 }
