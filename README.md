@@ -15,3 +15,6 @@ To use, you need to place the files in a PHP-enabled directory and open index.ph
 Suggestions welcome (leave an issue).
 Example preview:
 https://raw.githubusercontent.com/Moo64c/ScriptingAround/master/RotterNews/v0.2%20example.png
+Next features (for v0.3):
+ - [ ] Auto refresh per time period
+ - [ ] Open images in a frame to display full size.
