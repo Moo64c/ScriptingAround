@@ -9,6 +9,7 @@ html {
   float:right;
   width: 50%;
   margin-left:25px;
+  margin-right: 120px;
 }
 
 * {
@@ -54,6 +55,12 @@ span {
 
 .content-holder {
   display: none;
+}
+
+#rotter-actions {
+  position: fixed;
+  top:0;
+  right: 0;
 }
 
 #rotter-refresh {
