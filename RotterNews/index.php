@@ -22,6 +22,7 @@ require_once("RotterNews.php");
         <form action="javascript:rotterRefresh()"><button>F5</button></form>
       </div>
     </div>
+    <div id="rotter-actions-placeholder"></div>
     <div class="news-container" id="news-container">
       <?php print get_update(); ?>
     </div>
@@ -30,7 +31,7 @@ require_once("RotterNews.php");
     <!-- Twitter feed -->
     <a class="twitter-timeline" href="https://twitter.com/moo64c/lists/news" data-widget-id="497527332211421184">Tweets from https://twitter.com/moo64c/lists/news</a>
     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-  </div>s
+  </div>
 </div>
 </body>
 </html>

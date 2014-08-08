@@ -9,7 +9,6 @@ html {
   float:right;
   width: 670px;
   margin-left:25px;
-  margin-right: 120px;
 }
 
 .news-container .news-item * {
@@ -62,6 +61,11 @@ span {
   display: none;
 }
 
+#rotter-actions-placeholder {
+  float:right;
+  width:120px;
+  height:100%
+}
 #rotter-actions {
   position: fixed;
   top:0;
@@ -82,14 +86,4 @@ span {
   background-repeat: no-repeat;
   background-position: right top;
   background-size: 100px 100px;
-}
-
-.twitter-container {
-  float: right;
-  width: 40%;
-}
-
-.rotter-container {
-  width: 800px !important;
-  float:right;
 }
