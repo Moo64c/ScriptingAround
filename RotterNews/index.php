@@ -15,8 +15,8 @@ require_once("RotterNews.php");
 </head>
 <body>
   <!-- Rotter news -->
-  <div id="rotter-refresh">
-    <form action="javascript:rotterRefresh()"><button>Refresh</button></form>
+  <div id="rotter-refresh" dir="ltr">
+    <form action="javascript:rotterRefresh()"><button>Refresh (F5)</button></form>
   </div>
   <div class="news-container" id="news-container">
     <?php print get_update(); ?>

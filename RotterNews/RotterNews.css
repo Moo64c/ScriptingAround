@@ -51,3 +51,7 @@ span {
 .content-holder {
   display: none;
 }
+
+#rotter-refresh {
+  float: right;
+}

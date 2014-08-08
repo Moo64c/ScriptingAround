@@ -4,6 +4,16 @@
  * Aggregate Rotter news forum to something reasonable.
  */
 
+$(function () {
+  $(document).keydown(function (e) {
+    console.log(e.keyCode);
+    if (e.keyCode == 116) {
+      rotterRefresh();
+    }
+
+    return (e.which || e.keyCode) != 116;
+  });
+});
 
 // Hold information what news items are open.
 var openNews = [];
