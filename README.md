@@ -13,3 +13,5 @@ Has a link to open the thread in a new window in the normal Rotter.net site.
 Sidebar of Twitter news, self-updating.
 To use, you need to place the files in a PHP-enabled directory and open index.php
 Suggestions welcome (leave an issue).
+Example preview:
+https://raw.githubusercontent.com/Moo64c/ScriptingAround/master/RotterNews/v0.2%20example.png
