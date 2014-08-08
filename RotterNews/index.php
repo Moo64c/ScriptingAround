@@ -1,7 +1,6 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: amir
+ * User: Amir Arbel
  * Date: 8/8/14
  * Time: 11:50 AM
  */

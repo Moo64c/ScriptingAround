@@ -28,6 +28,14 @@ function rotterRefresh() {
 // first message in topic opens at js request.
 // Auto refresh rotter?
 
+function getFirstPost(url) {
+}
+
+function openInNewWindow(url) {
+  var win = window.open(url, '_blank');
+  win.focus();
+}
+
 // next next version
 // images from topic open into a neato frame.
 
