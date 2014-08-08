@@ -6,7 +6,6 @@
 
 $(function () {
   $(document).keydown(function (e) {
-    console.log(e.keyCode);
     if (e.keyCode == 116) {
       rotterRefresh();
     }
