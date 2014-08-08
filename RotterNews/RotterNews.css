@@ -7,13 +7,13 @@ html {
 
 .news-container {
   float:right;
-  width: 50%;
+  width: 670px;
   margin-left:25px;
   margin-right: 120px;
 }
 
 .news-container .news-item * {
-  max-width: 590px;
+  max-width: 620px;
   width: auto;
 }
 
@@ -82,4 +82,14 @@ span {
   background-repeat: no-repeat;
   background-position: right top;
   background-size: 100px 100px;
+}
+
+.twitter-container {
+  float: right;
+  width: 40%;
+}
+
+.rotter-container {
+  width: 800px !important;
+  float:right;
 }

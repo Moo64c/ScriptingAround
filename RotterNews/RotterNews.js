@@ -24,7 +24,9 @@ var openNews = [];
 function rotterRefresh() {
   var container = $("#news-container");
   // Leave an updating image in the meantime.
+  container.hide(600);
   container.html('<img src="updating.gif">');
+  container.show(600);
 
   var request = $.ajax({
     url: "RotterUpdate.php",
