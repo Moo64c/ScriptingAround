@@ -17,6 +17,10 @@ html {
   width: 100%;
   margin: auto;
   margin-bottom: 10px;
+  -webkit-transition: all 1s ease-in-out;
+  -moz-transition: all 1s ease-in-out;
+  -o-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
 }
 
 .news-item a {
@@ -42,4 +46,8 @@ span {
   width: 25px;
   -webkit-filter: brightness(3);
   filter: brightness(3);
+}
+
+.content-holder {
+  display: none;
 }

@@ -18,8 +18,6 @@ function rotterRefresh() {
 
   var request = $.ajax({
     url: "RotterUpdate.php",
-//    type: "POST",
-//    data: { id : menuId },
     dataType: "html"
   });
 
@@ -35,7 +33,7 @@ function getFirstPost(url, id) {
   }
   var container = $("#content-holder-" + id);
   // Leave an updating image in the meantime.
-  container.html('<img src="updating.gif">');
+  container.parents(".news-item").append('<img class="loadingGif-'+id+'" src="updating.gif">');
 
   var request = $.ajax({
     url: "RotterUpdate.php",
@@ -46,6 +44,8 @@ function getFirstPost(url, id) {
 
   request.done(function( msg ) {
     container.html( msg );
+    container.show(400);
+    $(".loadingGif-"+id).hide();
   });
 
   openNews.push(id);
@@ -59,7 +59,7 @@ function openInNewWindow(url) {
 function closeInnerContent(id) {
   var container = $("#content-holder-" + id);
   openNews.splice(openNews.indexOf(id), 1);
-  container.html('');
+  container.hide(400);
 }
 
 // next next version

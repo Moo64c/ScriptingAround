@@ -69,7 +69,7 @@ function get_update($request_url = BASE_URL) {
       $row->removeChild($row->firstChild->nextSibling->nextSibling->nextSibling);
 
       $print .=  innerXML($row);
-      $print .=  '<div id="content-holder-'. $id . '"></div></div>';
+      $print .=  '<div class="content-holder" id="content-holder-'. $id . '"></div></div>';
       $id++;
     }
   }
