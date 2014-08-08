@@ -72,6 +72,7 @@ function closeInnerContent(id) {
   container.hide(400);
 }
 
-// next next version
+// next version
 // Auto refresh rotter
+//
 // images from topic open into a neato frame.

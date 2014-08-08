@@ -12,6 +12,11 @@ html {
   margin-right: 120px;
 }
 
+.news-container .news-item * {
+  max-width: 590px;
+  width: auto;
+}
+
 * {
   border-radius: 10px;
 }
@@ -48,7 +53,7 @@ span {
   color: white !important;
 }
 .external-image {
-  width: 25px;
+  width: 25px !important;
   -webkit-filter: brightness(3);
   filter: brightness(3);
 }
