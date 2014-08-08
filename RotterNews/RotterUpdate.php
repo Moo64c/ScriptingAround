@@ -7,7 +7,7 @@
 require_once("RotterNews.php");
 
 if ($_POST['firstPost'] == 1) {
-  print get_first_post($_POST['url']);
+  print get_first_post($_POST['url'], $_POST['id']);
   return;
 }
 

@@ -35,6 +35,9 @@ font[color="000099"], font[color="#000099"]{
   color: greenyellow!important;
 }
 
+span {
+  color: white !important;
+}
 .external-image {
   width: 25px;
   -webkit-filter: brightness(3);

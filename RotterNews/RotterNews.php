@@ -96,7 +96,7 @@ function get_DOM_from_url($request_url) {
   return $html_base;
 }
 
-function get_first_post($url) {
+function get_first_post($url, $id) {
   $doc = get_DOM_from_url($url);
   // Find the main "div" and work from there.
   $tables_rows = $doc->getElementsByTagName('tr');
