@@ -1,4 +1,4 @@
 ScriptingAround
 ===============
 
-Scripting Attempts in various languages
+Scripting attempts in various languages
