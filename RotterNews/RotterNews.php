@@ -107,6 +107,11 @@ function get_first_post($url, $id) {
     $table_row = $tables_rows->item($i);
     if ($table_row->attributes->getNamedItem("bgcolor")->nodeValue == "#FDFDFD" ) {
 
+      // Add a "target=_blank" to each link.
+      foreach($doc->getElementsByTagName('a') as $link) {
+        $link->setAttribute("target", "_blank");
+      }
+
       // Add link for shadowbox before each image.
       foreach($doc->getElementsByTagName('img') as $image) {
         $image_url = $image->attributes->getNamedItem("src")->nodeValue;
@@ -119,7 +124,6 @@ function get_first_post($url, $id) {
 
         $image->parentNode->replaceChild( $shadow_href, $image );
       };
-
 
       print innerXML($table_row);
       break;
