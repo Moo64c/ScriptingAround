@@ -28,7 +28,7 @@ function rotterRefresh() {
   var container = $("#news-container");
   // Leave an updating image in the meantime.
   container.hide(500);
-  container.html('<img src="updating.gif">');
+  container.html('<img src="style/images/updating.gif">');
   container.show(250);
 
   var request = $.ajax({

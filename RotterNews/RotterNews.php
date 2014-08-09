@@ -56,7 +56,7 @@ function get_update($request_url = BASE_URL) {
           $external_link = $doc->createElement("a");
 
           $external_link_image = $doc->createElement('img');
-          $external_link_image->setAttribute('src', 'external.png');
+          $external_link_image->setAttribute('src', 'style/images/external.png');
           $external_link_image->setAttribute('class', 'external-image');
 
           $external_link->appendChild($external_link_image);
