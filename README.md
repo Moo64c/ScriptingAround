@@ -24,4 +24,4 @@ https://raw.githubusercontent.com/Moo64c/ScriptingAround/master/RotterNews/v0.2%
 
 Next features (for v0.3):
  - [ ] Auto refresh per time period
- - [ ] Open images in a frame to display full size.
+ - [x] Open images in a frame to display full size.
