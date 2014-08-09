@@ -15,7 +15,10 @@ function innerXML($node) {
   foreach ($node->childNodes as $child)     {
     $frag->appendChild($child->cloneNode(TRUE));
   }
-  return $doc->saveXML($frag);
+
+  $text = $doc->saveXML($frag);
+  $text = str_replace("תמונות", '<i>תמונות</i>', $text);
+  return $text;
 }
 
 /**
@@ -103,6 +106,21 @@ function get_first_post($url, $id) {
   for($i = 0; $i < $tables_rows->length; $i++) {
     $table_row = $tables_rows->item($i);
     if ($table_row->attributes->getNamedItem("bgcolor")->nodeValue == "#FDFDFD" ) {
+
+      // Add link for shadowbox before each image.
+      foreach($doc->getElementsByTagName('img') as $image) {
+        $image_url = $image->attributes->getNamedItem("src")->nodeValue;
+        $shadow_href = $doc->createElement('a');
+        $shadow_href->setAttribute("rel", "shadowbox[post-$id]");
+        $shadow_href->setAttribute("href", $image_url);
+        $shadow_href->setAttribute("class", "shadowbox-link");
+        $clone = $image->cloneNode();
+        $shadow_href->appendChild( $clone );
+
+        $image->parentNode->replaceChild( $shadow_href, $image );
+      };
+
+
       print innerXML($table_row);
       break;
     }

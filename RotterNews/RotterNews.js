@@ -4,6 +4,10 @@
  * Aggregate Rotter news forum to something reasonable.
  */
 
+Shadowbox.init({
+  skipSetup:true
+});
+
 $(function () {
   $(document).keydown(function (e) {
     if (e.keyCode == 116) {
@@ -57,6 +61,8 @@ function getFirstPost(url, id) {
     container.html( msg );
     container.show(400);
     $(".loadingGif-"+id).hide();
+
+    Shadowbox.setup("a.shadowbox-link");
   });
 
   openNews.push(id);

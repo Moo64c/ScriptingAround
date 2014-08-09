@@ -1,4 +1,4 @@
-html {
+body {
   direction: rtl;
   background: black;
   color: white;
@@ -92,4 +92,19 @@ span {
   overflow: scroll;
   overflow-style: scrollbar;
   height: 650px;
+}
+
+img#sb-player {
+  position: relative!important;
+}
+
+div#sb-counter {
+  direction: ltr;
+}
+
+i {
+  font-style: italic;
+  font-weight: bold;
+  font-size:30px;
+  color: greenyellow;
 }

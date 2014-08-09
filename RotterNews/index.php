@@ -12,8 +12,10 @@ require_once("RotterNews.php");
   <link rel="icon" type="image/png" href="favicon.ico">
   <title>AmirNews v0.2</title>
   <script type="text/javascript" src="jquery-1.11.1.js"></script>
+  <script type="text/javascript" src="shadowbox/shadowbox.js"></script>
   <script type="text/javascript" src="RotterNews.js"></script>
   <link rel="stylesheet" type="text/css" href="RotterNews.css">
+  <link rel="stylesheet" type="text/css" href="shadowbox/shadowbox.css">
 </head>
 <body>
 <div class="main-container">
