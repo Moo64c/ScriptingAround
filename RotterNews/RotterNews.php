@@ -18,7 +18,11 @@ function innerXML($node) {
 
   $text = $doc->saveXML($frag);
   $text = str_replace("תמונות", '<i>תמונות</i>', $text);
-  $text = str_replace("http://rotter.net/User_files/forum/signatures/", "signature.php?sig=", $text);
+
+  // Handle signatures.
+  $text = str_replace("http://rotter.net/User_files/forum/signatures/", "style/images/signature.png?q=", $text);
+  $text = str_replace("/User_files/forum/signatures/", "style/images/signature.png?q=", $text);
+
   return $text;
 }
 
