@@ -20,8 +20,9 @@ function innerXML($node) {
   $text = str_replace("תמונות", '<i>תמונות</i>', $text);
 
   // Handle signatures.
-  $text = str_replace("http://rotter.net/User_files/forum/signatures/", "style/images/signature.png?q=", $text);
-  $text = str_replace("/User_files/forum/signatures/", "style/images/signature.png?q=", $text);
+  $text = str_replace('src="http://rotter.net/User_files/forum/signatures/', "src=\"style/images/signature.png?q=", $text);
+  $text = str_replace('src="/User_files/forum/signatures/', "src=\"style/images/signature.png?q=", $text);
+  $text = str_replace('href="/User_files/forum/signatures/', "href=\"http://rotter.net/User_files/forum/signatures/", $text);
 
   return $text;
 }
