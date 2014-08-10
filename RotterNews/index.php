@@ -25,6 +25,9 @@ require_once("RotterNews.php");
       <div id="rotter-refresh" dir="ltr">
         <form action="javascript:rotterRefresh()"><button>F5</button></form>
       </div>
+      <div class="">
+        <a href="https://github.com/Moo64c/ScriptingAround/tree/master/RotterNews">Github project</a>
+      </div>
     </div>
     <div id="rotter-actions-placeholder"></div>
     <div class="news-container" id="news-container">
