@@ -15,8 +15,11 @@ body {
   width: auto;
 }
 
-* {
+div,img {
   border-radius: 10px;
+}
+object embed{
+  width: 620px !important;
 }
 
 .news-item {
