@@ -18,6 +18,7 @@ function innerXML($node) {
 
   $text = $doc->saveXML($frag);
   $text = str_replace("תמונות", '<i>תמונות</i>', $text);
+  $text = str_replace("http://rotter.net/User_files/forum/signatures/", "signature.php?sig=", $text);
   return $text;
 }
 
