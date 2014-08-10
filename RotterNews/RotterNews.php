@@ -106,7 +106,11 @@ function get_DOM_from_url($request_url) {
 }
 
 function get_first_post($url, $id) {
-  $doc = get_DOM_from_url($url);
+  $url_parts = explode("&", $url);
+  print_r($url_parts);
+  $om = str_replace("om=", "", $url_parts[1]);
+  $new_url = "http://rotter.net/forum/scoops1/$om.shtml";
+  $doc = get_DOM_from_url($new_url);
   // Find the main "div" and work from there.
   $tables_rows = $doc->getElementsByTagName('tr');
   for($i = 0; $i < $tables_rows->length; $i++) {
