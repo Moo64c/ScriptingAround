@@ -48,7 +48,7 @@ function getFirstPost(url, id) {
   }
   var container = $("#content-holder-" + id);
   // Leave an updating image in the meantime.
-  container.parents(".news-item").append('<img class="loadingGif-'+id+'" src="updating.gif">');
+  container.parents(".news-item").append('<img class="loadingGif-'+id+'" src="style/images/updating.gif">');
 
   var request = $.ajax({
     url: "RotterUpdate.php",
