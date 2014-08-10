@@ -15,7 +15,7 @@ Has a link to open the thread in a new window in the normal Rotter.net site.
 
 Sidebar of Twitter news, self-updating.
 
-[Rotter news live example]. 
+[Rotter news live example]. (Thanks to 2freehosting.com).
 
 Suggestions welcome (leave an issue).
 
