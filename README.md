@@ -4,7 +4,7 @@ ScriptingAround
 Scripting attempts in various languages
 
 
-RotterNews (v0.2)
+RotterNews (v0.3)
 ------
 
 PHP/jQuery used to get a nice look on the news displayed from Rotter.net scoop forum.
@@ -18,13 +18,5 @@ Sidebar of Twitter news, self-updating.
 [Rotter news live example]. (Thanks to 2freehosting.com).
 
 Suggestions welcome (leave an issue).
-
-Example preview:
-https://raw.githubusercontent.com/Moo64c/ScriptingAround/master/RotterNews/v0.2%20example.png
-
-Next features (for v0.3):
- - [ ] Auto refresh per time period
- - [x] Open images in a frame to display full size.
-
 
 [Rotter news live example]:http://rotternews.2fh.co/RotterNews/

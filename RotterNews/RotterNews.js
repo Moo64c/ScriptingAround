@@ -59,6 +59,7 @@ function getFirstPost(url, id) {
 
   request.done(function( msg ) {
     container.html( msg );
+    container.toggleClass("open");
     container.show(400);
     $(".loadingGif-"+id).hide();
 
@@ -77,8 +78,5 @@ function closeInnerContent(id) {
   var container = $("#content-holder-" + id);
   openNews.splice(openNews.indexOf(id), 1);
   container.hide(400);
+  container.toggleClass("open");
 }
-
-// next version
-// Auto refresh rotter
-// images from topic open into a neato frame.

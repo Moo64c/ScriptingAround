@@ -17,7 +17,6 @@ function innerXML($node) {
   }
 
   $text = $doc->saveXML($frag);
-  $text = str_replace("תמונות", '<i>תמונות</i>', $text);
 
   // Handle signatures.
   $text = str_replace('src="http://rotter.net/User_files/forum/signatures/', "src=\"style/images/signature.png?q=", $text);
@@ -46,7 +45,7 @@ function get_update($request_url = BASE_URL) {
     $url =  $link->attributes->getNamedItem("href")->textContent;
 
     if (strpos($url, 'forum=scoops1') && strpos($url, 'az=read_count') && !strpos($url, "mm=") ) {
-      $print .= '<div class="news-item">';
+      $print .= '<div class="news-item" id="news-item-"' . $id . '>';
 
       $row = $link->parentNode->parentNode->parentNode->parentNode;
       // Change link.
@@ -64,18 +63,20 @@ function get_update($request_url = BASE_URL) {
           $external_link_image = $doc->createElement('img');
           $external_link_image->setAttribute('src', 'style/images/external.png');
           $external_link_image->setAttribute('class', 'external-image');
-
           $external_link->appendChild($external_link_image);
           $external_link->setAttribute("href", 'javascript:openInNewWindow("' . $href . '")');
           $external_link->setAttribute("target", "_blank");
-          $link->appendChild($external_link);
+
+          $row->insertBefore($external_link, $link->parentNode->parentNode->parentNode->previousSibling);
+
         }
       }
 
       // Remove unnecessary information.
-      $row->removeChild($row->firstChild->nextSibling->nextSibling->nextSibling);
-      $row->removeChild($row->firstChild->nextSibling->nextSibling->nextSibling);
-      $row->removeChild($row->firstChild->nextSibling->nextSibling->nextSibling);
+      $link_parent = $link->parentNode->parentNode->parentNode;
+      $row->removeChild($link_parent->nextSibling->nextSibling);
+      $row->removeChild($link_parent->nextSibling->nextSibling->nextSibling);
+      $row->removeChild($link_parent->previousSibling);
 
       $print .=  innerXML($row);
       $print .=  '<div class="content-holder" id="content-holder-'. $id . '"></div></div>';
@@ -117,9 +118,20 @@ function get_first_post($url, $id) {
     $table_row = $tables_rows->item($i);
     if ($table_row->attributes->getNamedItem("bgcolor")->nodeValue == "#FDFDFD" ) {
 
+      // Remove attributes for "font" and "td" elements.
+      _remove_attributes($doc, array("font", "td"));
+
       // Add a "target=_blank" to each link.
       foreach($doc->getElementsByTagName('a') as $link) {
         $link->setAttribute("target", "_blank");
+        $parse = parse_url($link->nodeValue);
+
+        // Change links' text to just their domain. (Prevents box size messes).
+        $link->nodeValue = $parse['host'];
+      }
+
+      foreach($doc->getElementsByTagName('img') as $image) {
+//        $image->setAttribute("class", "content-image col-xs-5");
       }
 
       // Add link for shadowbox before each image.
@@ -141,3 +153,15 @@ function get_first_post($url, $id) {
   }
 }
 
+
+
+function _remove_attributes(DOMDocument $doc, $names) {
+  foreach ($names as $name) {
+    foreach($doc->getElementsByTagName($name) as $element) {
+      $attributes = $element->attributes;
+      while ($attributes->length) {
+        $element->removeAttribute($attributes->item(0)->name);
+      }
+    }
+  }
+}

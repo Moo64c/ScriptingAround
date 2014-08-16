@@ -1,8 +1,7 @@
 <?php
 /**
- * User: Amir Arbel
- * Date: 8/8/14
- * Time: 12:03 PM
+ * @file: RotterUpdate.php
+ * Created by Amir Arbel on 8/8/14.
  */ 
 require_once("RotterNews.php");
 

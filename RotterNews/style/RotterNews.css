@@ -1,81 +1,48 @@
 body {
   direction: rtl;
-  background: black;
+  background: black !important;
   color: white;
 }
 
-.news-container {
-  float:right;
-  width: 670px;
-  margin-left:25px;
-}
-
-.news-container .news-item * {
-  max-width: 620px;
-  width: auto;
-}
-
-div,img {
-  border-radius: 10px;
-}
-object embed{
-  width: 620px !important;
-}
-
-.news-item {
-  line-height:30px;
-  border: 1px solid gold;
-  width: 100%;
-  margin: auto;
-  margin-bottom: 10px;
-  -webkit-transition: all 1s ease-in-out;
-  -moz-transition: all 1s ease-in-out;
-  -o-transition: all 1s ease-in-out;
-  transition: all 1s ease-in-out;
-}
-
-.news-item a {
-  font-size: 18px;
-  font-family: arial, sans-serif;
-  color: white;
-
-}
-
-.news-container .news-item a:visited {
-  font-size: 10px !important;;
-  color: darkgrey;
-}
-
-font[color="000099"], font[color="#000099"]{
-  color: greenyellow!important;
-}
-
-span {
-  color: white !important;
-}
 .external-image {
   width: 25px !important;
   -webkit-filter: brightness(3);
   filter: brightness(3);
 }
 
+.float-right {
+  float: right !important;
+}
+
+.main-container {
+  width: 100%;
+}
+.news-item a {
+  font-size: 16px;
+}
+
+.news-container .news-item a:visited {
+  font-size: 10px !important;
+  color: darkgrey;
+}
+
+font[color="000099"], font[color="#000099"]{
+  color: lightgrey!important;
+}
+
+span {
+  color: white !important;
+}
+
 .content-holder {
-  display: none;
-}
+  position: relative;
+  width: 100%;
+  color: white;
 
-#rotter-actions-placeholder {
-  float:right;
-  width: 100px;
-  height:100%
 }
-#rotter-actions {
-  position: fixed;
-  top:0;
-  right: 0;
-}
-
-#rotter-refresh {
-  float: right;
+.content-holder.open {
+  border:1px solid greenyellow;
+  border-radius: 10px;
 }
 
 #rotter-refresh button {
@@ -90,13 +57,6 @@ span {
   background-size: 100px 100px;
 }
 
-.rotter-container {
-  float:right;
-  overflow: scroll;
-  overflow-style: scrollbar;
-  height: 650px;
-}
-
 img#sb-player {
   position: relative!important;
 }
@@ -105,9 +65,18 @@ div#sb-counter {
   direction: ltr;
 }
 
-i {
-  font-style: italic;
-  font-weight: bold;
-  font-size:30px;
-  color: greenyellow;
+font {
+  width: 100%;
+}
+
+.content-holder b, .content-holder tbody .content-holder table {
+  width: 100%;
+}
+
+.content-holder img {
+  max-width: 100%;
+}
+
+img {
+  max-width: 100%;
 }
