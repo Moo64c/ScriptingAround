@@ -26,6 +26,7 @@ var openNews = [];
  */
 function rotterRefresh() {
   var container = $("#news-container");
+  var sorting = $("#sorting-options").val();
   // Leave an updating image in the meantime.
   container.hide(500);
   container.html('<img src="style/images/updating.gif">');
@@ -33,6 +34,8 @@ function rotterRefresh() {
 
   var request = $.ajax({
     url: "RotterUpdate.php",
+    type: "POST",
+    data: { sorting_method: sorting },
     dataType: "html"
   });
 
@@ -53,7 +56,7 @@ function getFirstPost(url, id) {
   var request = $.ajax({
     url: "RotterUpdate.php",
     type: "POST",
-    data: { firstPost: 1, url : url, id: id},
+    data: { firstPost: 1, url : url, id: id },
     dataType: "html"
   });
 

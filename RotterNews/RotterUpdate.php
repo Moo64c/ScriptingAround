@@ -10,4 +10,5 @@ if ($_POST['firstPost'] == 1) {
   return;
 }
 
-print get_update();
+$sorting_method = isset($_POST['sorting_method']) ? $_POST['sorting_method'] : 'native';
+print get_update($sorting_method);

@@ -25,6 +25,11 @@ require_once("RotterNews.php");
       <div id="rotter-refresh">
         <form action="javascript:rotterRefresh()">
           <button>F5</button>
+          <select id="sorting-options" onchange="rotterRefresh()">
+            <?php foreach(get_content_sorters() as $option => $name): ?>
+              <option value="<?php print $option; ?>"><?php print $name; ?></option>
+            <?php endforeach; ?>
+          </select>
         </form>
       </div>
       <div>

@@ -80,3 +80,11 @@ font {
 img {
   max-width: 100%;
 }
+
+#sorting-options {
+  overflow:hidden;
+  white-space:pre;
+  text-overflow:ellipsis;
+  -webkit-appearance: none;
+  width: 100%;
+}

@@ -28,12 +28,14 @@ function innerXML($node) {
 
 /**
  * Request an update from Rotter's scoops forum.
+ * @param $sorting_method string
+ *   Sorting method to use.
  * @param $request_url string
  *  Future support for other Rotter forums.
  * @return string
  *  HTML including the actual news.
  */
-function get_update($request_url = BASE_URL) {
+function get_update($sorting_method = 'native', $request_url = BASE_URL) {
   $doc = get_DOM_from_url($request_url);
   $load_time = time();
 
@@ -118,8 +120,6 @@ function get_update($request_url = BASE_URL) {
   $print = "";
 
   // Sort by whatever.
-  $sorting_method = isset($_POST['sort']) ? $_POST['sort'] : 'native';
-  $sorting_method = "views_to_time";
   if ($sorting_method != 'native') {
     usort($content, "content_sort_$sorting_method");
   }
@@ -127,7 +127,6 @@ function get_update($request_url = BASE_URL) {
   // Return the sorted array.
   foreach ($content as $row) {
     $print .= $row['to_print'];
-    $print .= "<h1>" . ($row['views'] / ($load_time - $row['timestamp'])) . "</h1>";
   }
 
   return $print;
@@ -222,6 +221,18 @@ function _remove_attributes(DOMDocument $doc, $names) {
 }
 
 // -------------- SORTING FUNCTIONS -----------
+function get_content_sorters() {
+  return array(
+    'native' => "Native",
+    'views' => "Number of views",
+    'comments' => "Number of comments",
+    'time' => "Newest",
+    'comments_to_views' => "Comments per view",
+    'comments_to_time' => "Comments per minute",
+    'views_to_time' => "Views per minute",
+  );
+}
+
 function content_sort_views($first_element, $second_element) {
   return $second_element['views'] - $first_element['views'];
 }
