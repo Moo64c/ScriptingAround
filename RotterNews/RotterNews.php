@@ -55,7 +55,6 @@ function get_update($sorting_method = 'native', $request_url = BASE_URL) {
       // Change link.
       foreach ($link->attributes as $attribute) {
         if ($attribute->name == 'href') {
-          $original_href = $attribute->value;
           $href = urlencode($attribute->value);
 
           // Change the link clicked to javascript.
@@ -82,6 +81,7 @@ function get_update($sorting_method = 'native', $request_url = BASE_URL) {
       $time->removeChild($time->firstChild->nextSibling->nextSibling->nextSibling);
       $date = trim($time->firstChild->textContent, chr(0xC2).chr(0xA0));
       $date = explode(".", $date);
+      // Should be good until the year 2100.
       $date[2] = 2000 + $date[2];
       $date = implode(".", $date);
       $time = $time->firstChild->nextSibling->textContent;
