@@ -35,17 +35,19 @@ function innerXML($node) {
  */
 function get_update($request_url = BASE_URL) {
   $doc = get_DOM_from_url($request_url);
+  $load_time = time();
 
   $links = $doc->getElementsByTagName('a');
 
-  $print = "";
+  $content = array();
   $id = 1;
   for ($i = 0; $i < $links->length; $i++) {
     $link = $links->item($i);
     $url =  $link->attributes->getNamedItem("href")->textContent;
+    $local_print = "";
 
     if (strpos($url, 'forum=scoops1') && strpos($url, 'az=read_count') && !strpos($url, "mm=") ) {
-      $print .= '<div class="news-item" id="news-item-"' . $id . '>';
+      $local_print .= '<div class="news-item" id="news-item-"' . $id . '>';
 
       $row = $link->parentNode->parentNode->parentNode->parentNode;
       // Change link.
@@ -71,18 +73,63 @@ function get_update($request_url = BASE_URL) {
 
         }
       }
+      $link_parent = $link->parentNode->parentNode->parentNode;
+
+      // Get the date and time.
+      $time = $link_parent->nextSibling->nextSibling->firstChild->nextSibling->firstChild;
+      $time->removeChild($time->firstChild->nextSibling->nextSibling->nextSibling);
+      $date = trim($time->firstChild->textContent, chr(0xC2).chr(0xA0));
+      $date = explode(".", $date);
+      $date[2] = 2000 + $date[2];
+      $date = implode(".", $date);
+      $time = $time->firstChild->nextSibling->textContent;
+
+      $timestamp = strtotime("$date $time");
 
       // Remove unnecessary information.
-      $link_parent = $link->parentNode->parentNode->parentNode;
       $row->removeChild($link_parent->nextSibling->nextSibling);
       $row->removeChild($link_parent->nextSibling->nextSibling->nextSibling);
       $row->removeChild($link_parent->previousSibling);
 
-      $print .=  innerXML($row);
-      $print .=  '<div class="content-holder" id="content-holder-'. $id . '"></div></div>';
+      $comments = $link_parent->nextSibling->nextSibling->nextSibling->nextSibling->textContent;
+      $views = $link_parent->nextSibling->nextSibling->nextSibling->nextSibling->nextSibling->nextSibling->firstChild->nextSibling->firstChild->textContent;
+      $views = intval($views) == 0 ? 1 : intval($views);
+
+      $row->removeChild($link_parent->nextSibling->nextSibling->nextSibling->nextSibling);
+      $row->removeChild($link_parent->nextSibling->nextSibling->nextSibling->nextSibling->nextSibling);
+
+      $local_print .= innerXML($row);
+      $local_print .= '<div class="content-holder" id="content-holder-'. $id . '"></div></div>';
+
+      // Add the data with sorting abilities.
+      $content[$id] = array(
+        'to_print' => $local_print,
+        'views' => $views,
+        'comments' => $comments,
+        'native_id' => $id,
+        'timestamp' => $timestamp,
+        'time_passed' => $load_time - $timestamp,
+      );
+
       $id++;
     }
   }
+
+  $print = "";
+
+  // Sort by whatever.
+  $sorting_method = isset($_POST['sort']) ? $_POST['sort'] : 'native';
+  $sorting_method = "views_to_time";
+  if ($sorting_method != 'native') {
+    usort($content, "content_sort_$sorting_method");
+  }
+
+  // Return the sorted array.
+  foreach ($content as $row) {
+    $print .= $row['to_print'];
+    $print .= "<h1>" . ($row['views'] / ($load_time - $row['timestamp'])) . "</h1>";
+  }
+
   return $print;
 }
 
@@ -106,6 +153,13 @@ function get_DOM_from_url($request_url) {
   return $html_base;
 }
 
+/**
+ * Prints the first post from a rotter thread.
+ * @param $url
+ *  Thread URL
+ * @param $id
+ *  Local ID granted by the main page.
+ */
 function get_first_post($url, $id) {
   $url_parts = explode("&", $url);
   print_r($url_parts);
@@ -130,10 +184,6 @@ function get_first_post($url, $id) {
         $link->nodeValue = $parse['host'];
       }
 
-      foreach($doc->getElementsByTagName('img') as $image) {
-//        $image->setAttribute("class", "content-image col-xs-5");
-      }
-
       // Add link for shadowbox before each image.
       foreach($doc->getElementsByTagName('img') as $image) {
         $image_url = $image->attributes->getNamedItem("src")->nodeValue;
@@ -153,8 +203,13 @@ function get_first_post($url, $id) {
   }
 }
 
-
-
+/**
+ * Removes all attributes from specific kind(s) of element(s).
+ * @param DOMDocument $doc
+ *  Document to use.
+ * @param $names array
+ *   Array of strings to search for.
+ */
 function _remove_attributes(DOMDocument $doc, $names) {
   foreach ($names as $name) {
     foreach($doc->getElementsByTagName($name) as $element) {
@@ -164,4 +219,29 @@ function _remove_attributes(DOMDocument $doc, $names) {
       }
     }
   }
+}
+
+// -------------- SORTING FUNCTIONS -----------
+function content_sort_views($first_element, $second_element) {
+  return $second_element['views'] - $first_element['views'];
+}
+
+function content_sort_comments($first_element, $second_element) {
+  return $second_element['comments'] - $first_element['comments'];
+}
+
+function content_sort_time($first_element, $second_element) {
+  return $first_element['time_passed'] - $second_element['time_passed'];
+}
+
+function content_sort_comments_to_views($first_element, $second_element) {
+  return 1000 * (($second_element['comments'] / $second_element['views']) - ($first_element['comments'] / $first_element['views']));
+}
+
+function content_sort_comments_to_time($first_element, $second_element) {
+  return 1000 * (($second_element['comments'] / ($second_element['time_passed'])) - ($first_element['comments'] / ($first_element['time_passed'])));
+}
+
+function content_sort_views_to_time($first_element, $second_element) {
+  return 1000 * (($second_element['views'] / $second_element['time_passed']) - ($first_element['views'] / $first_element['time_passed']));
 }
