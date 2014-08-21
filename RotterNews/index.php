@@ -12,7 +12,7 @@ require_once("RotterNews.php");
   <script type="text/javascript" src="lib/jquery-1.11.1.js"></script>
   <script type="text/javascript" src="lib/shadowbox/shadowbox.js"></script>
   <script type="text/javascript" src="lib/jquery.timeago.js"></script>
-  <script type="text/javascript" src="lib/jquery.timeago.he.js"></script>
+  <script type="text/javascript" src="lib/jquery.timeago.he.custom.js"></script>
   <script type="text/javascript" src="RotterNews.js"></script>
   <link rel="stylesheet" type="text/css" href="style/RotterNews.css">
   <link rel="stylesheet" type="text/css" href="lib/shadowbox/shadowbox.css">    <!-- Bootstrap -->
@@ -33,7 +33,7 @@ require_once("RotterNews.php");
             <?php endforeach; ?>
           </select>
           <label>
-            <input id="show-time" type="checkbox" checked="checked" />זמנים
+            <input id="show-time" type="checkbox" checked="checked" /> זמנים
           </label>
         </form>
       </div>

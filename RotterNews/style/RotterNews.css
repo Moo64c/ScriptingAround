@@ -89,3 +89,8 @@ img {
   -webkit-appearance: none;
   width: 100%;
 }
+
+abbr {
+  color: hotpink;
+  float: left;
+}
