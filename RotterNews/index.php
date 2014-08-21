@@ -3,6 +3,8 @@
  * Created by Amir Arbel on 8/8/14.
  */
 require_once("RotterNews.php");
+error_reporting(0);
+header('Content-type: text/html; charset=UTF-8');
 ?>
 <!DOCTYPE html>
 <html>
@@ -15,7 +17,8 @@ require_once("RotterNews.php");
   <script type="text/javascript" src="lib/jquery.timeago.he.custom.js"></script>
   <script type="text/javascript" src="RotterNews.js"></script>
   <link rel="stylesheet" type="text/css" href="style/RotterNews.css">
-  <link rel="stylesheet" type="text/css" href="lib/shadowbox/shadowbox.css">    <!-- Bootstrap -->
+  <link rel="stylesheet" type="text/css" href="lib/shadowbox/shadowbox.css">
+  <!-- Bootstrap -->
   <link href="lib/bootstrap-3.2.0-dist/css/bootstrap.min.css" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>

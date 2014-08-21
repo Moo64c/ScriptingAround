@@ -149,6 +149,8 @@ function get_DOM_from_url($request_url) {
   curl_setopt($curl, CURLOPT_FOLLOWLOCATION, TRUE);
   curl_setopt($curl, CURLOPT_URL, $request_url);
   curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
+  // Set 2 seconds timeout.
+  curl_setopt($curl, CURLOPT_TIMEOUT, 2);
   $str = curl_exec($curl);
   curl_close($curl);
 
