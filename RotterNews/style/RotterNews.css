@@ -1,6 +1,6 @@
 body {
   direction: rtl;
-  background: black !important;
+  background: #011 !important;
   color: white;
 }
 
@@ -97,4 +97,8 @@ abbr {
 
 .odd {
   background: #011;
+}
+
+.even {
+  background: #012121;
 }
