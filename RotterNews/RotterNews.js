@@ -4,6 +4,10 @@
  * Aggregate Rotter news forum to something reasonable.
  */
 
+jQuery(document).ready(function() {
+  rotterRefresh();
+});
+
 Shadowbox.init({
   skipSetup:true
 });
@@ -27,6 +31,7 @@ var openNews = [];
 function rotterRefresh() {
   var container = $("#news-container");
   var sorting = $("#sorting-options").val();
+  var showTime = $("#show-time").prop("checked");
   // Leave an updating image in the meantime.
   container.hide(500);
   container.html('<img src="style/images/updating.gif">');
@@ -41,6 +46,9 @@ function rotterRefresh() {
 
   request.done(function( msg ) {
     container.html( msg );
+    if (showTime) {
+      jQuery("abbr.timeago").timeago();
+    }
   });
 }
 

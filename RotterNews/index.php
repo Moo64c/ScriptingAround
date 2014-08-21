@@ -11,6 +11,8 @@ require_once("RotterNews.php");
   <title>RotterNews v0.3</title>
   <script type="text/javascript" src="lib/jquery-1.11.1.js"></script>
   <script type="text/javascript" src="lib/shadowbox/shadowbox.js"></script>
+  <script type="text/javascript" src="lib/jquery.timeago.js"></script>
+  <script type="text/javascript" src="lib/jquery.timeago.he.js"></script>
   <script type="text/javascript" src="RotterNews.js"></script>
   <link rel="stylesheet" type="text/css" href="style/RotterNews.css">
   <link rel="stylesheet" type="text/css" href="lib/shadowbox/shadowbox.css">    <!-- Bootstrap -->
@@ -30,6 +32,9 @@ require_once("RotterNews.php");
               <option value="<?php print $option; ?>"><?php print $name; ?></option>
             <?php endforeach; ?>
           </select>
+          <label>
+            <input id="show-time" type="checkbox" checked="checked" />זמנים
+          </label>
         </form>
       </div>
       <div>
@@ -38,7 +43,6 @@ require_once("RotterNews.php");
     </div>
     <div class="rotter-container col-md-6 float-right">
       <div class="news-container float-right" id="news-container">
-        <?php print get_update(); ?>
       </div>
     </div>
     <div class="twitter-container col-md-5  float-right">

@@ -3,6 +3,7 @@
 // Final html to be printed in the index.php file.
 $raw_html = "";
 define("BASE_URL", "http://rotter.net/scoopscache.html");
+date_default_timezone_set("Asia/Jerusalem");
 
 /**
  * @param $node
@@ -100,8 +101,11 @@ function get_update($sorting_method = 'native', $request_url = BASE_URL) {
       $row->removeChild($link_parent->nextSibling->nextSibling->nextSibling->nextSibling);
       $row->removeChild($link_parent->nextSibling->nextSibling->nextSibling->nextSibling->nextSibling);
 
+
       $local_print .= innerXML($row);
-      $local_print .= '<div class="content-holder" id="content-holder-'. $id . '"></div></div>';
+      $local_print .= '<abbr class="timeago" title="' . gmdate('Y-m-d\TH:i:s\Z', $timestamp) . '"></abbr>';
+      $local_print .= '<div class="content-holder" id="content-holder-'. $id . '"></div>';
+      $local_print .= '</div>';
 
       // Add the data with sorting abilities.
       $content[$id] = array(
@@ -172,7 +176,7 @@ function get_first_post($url, $id) {
     if ($table_row->attributes->getNamedItem("bgcolor")->nodeValue == "#FDFDFD" ) {
 
       // Remove attributes for "font" and "td" elements.
-      _remove_attributes($doc, array("font", "td"));
+      _remove_attributes($doc, array("font", "td", "table"));
 
       // Add a "target=_blank" to each link.
       foreach($doc->getElementsByTagName('a') as $link) {
@@ -224,12 +228,12 @@ function _remove_attributes(DOMDocument $doc, $names) {
 function get_content_sorters() {
   return array(
     'native' => "Native",
-    'views' => "Number of views",
-    'comments' => "Number of comments",
     'time' => "Newest",
-    'comments_to_views' => "Comments per view",
-    'comments_to_time' => "Comments per minute",
-    'views_to_time' => "Views per minute",
+    'views' => "Views",
+    'comments' => "Comments",
+    'comments_to_views' => "Comments/views",
+    'comments_to_time' => "Comments/time",
+    'views_to_time' => "Views/time",
   );
 }
 
