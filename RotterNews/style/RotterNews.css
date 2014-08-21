@@ -41,7 +41,6 @@ span {
 
 }
 .content-holder.open {
-  border:1px solid greenyellow;
   border-radius: 10px;
 }
 
@@ -70,7 +69,7 @@ font {
 }
 
 .content-holder table {
-  width: 95% !important;
+  width: 100% !important;
   margin: auto;
 }
 

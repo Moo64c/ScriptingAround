@@ -58,4 +58,3 @@ header('Content-type: text/html; charset=UTF-8');
 <script type="text/javascript" src="lib/bootstrap-3.2.0-dist/js/bootstrap.js"></script>
 </body>
 </html>
-

@@ -101,9 +101,9 @@ function get_update($sorting_method = 'native', $request_url = BASE_URL) {
       $row->removeChild($link_parent->nextSibling->nextSibling->nextSibling->nextSibling->nextSibling);
 
       // Add the rows to be printed.
+      $local_print .= '<abbr class="timeago" title="' . gmdate('Y-m-d\TH:i:s\Z', $timestamp) . '"></abbr>';
       $local_print .= '<div class="news-item" id="news-item-' . $id . '">';
       $local_print .= innerXML($row);
-      $local_print .= '<abbr class="timeago" title="' . gmdate('Y-m-d\TH:i:s\Z', $timestamp) . '"></abbr>';
       $local_print .= '<div class="content-holder" id="content-holder-'. $id . '"></div>';
       $local_print .= '</div>';
 
@@ -195,6 +195,12 @@ function get_first_post($url, $id) {
       // Add link for shadowbox before each image.
       foreach($doc->getElementsByTagName('img') as $image) {
         $image_url = $image->attributes->getNamedItem("src")->nodeValue;
+        if (strpos($image_url, "Images/Avatars/")) {
+          // This is an avatar image - just remove it.
+          $image->parentNode->parentNode->removeChild($image->parentNode);
+          continue;
+        }
+
         $shadow_href = $doc->createElement('a');
         $shadow_href->setAttribute("rel", "shadowbox[post-$id]");
         $shadow_href->setAttribute("href", $image_url);
