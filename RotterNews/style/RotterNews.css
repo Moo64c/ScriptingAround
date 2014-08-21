@@ -94,3 +94,7 @@ abbr {
   color: hotpink;
   float: left;
 }
+
+.odd {
+  background: #011;
+}

@@ -50,7 +50,6 @@ function get_update($sorting_method = 'native', $request_url = BASE_URL) {
     $local_print = "";
 
     if (strpos($url, 'forum=scoops1') && strpos($url, 'az=read_count') && !strpos($url, "mm=") ) {
-      $local_print .= '<div class="news-item" id="news-item-"' . $id . '>';
 
       $row = $link->parentNode->parentNode->parentNode->parentNode;
       // Change link.
@@ -101,7 +100,8 @@ function get_update($sorting_method = 'native', $request_url = BASE_URL) {
       $row->removeChild($link_parent->nextSibling->nextSibling->nextSibling->nextSibling);
       $row->removeChild($link_parent->nextSibling->nextSibling->nextSibling->nextSibling->nextSibling);
 
-
+      // Add the rows to be printed.
+      $local_print .= '<div class="news-item" id="news-item-' . $id . '">';
       $local_print .= innerXML($row);
       $local_print .= '<abbr class="timeago" title="' . gmdate('Y-m-d\TH:i:s\Z', $timestamp) . '"></abbr>';
       $local_print .= '<div class="content-holder" id="content-holder-'. $id . '"></div>';
@@ -129,8 +129,11 @@ function get_update($sorting_method = 'native', $request_url = BASE_URL) {
   }
 
   // Return the sorted array.
-  foreach ($content as $row) {
+  foreach ($content as $id => $row) {
+    $class = $id % 2 == 0 ? "even" : "odd";
+    $print .= '<div class="'. $class . '">';
     $print .= $row['to_print'];
+    $print .= '</div>';
   }
 
   return $print;
