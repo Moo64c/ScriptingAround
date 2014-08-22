@@ -238,13 +238,13 @@ function _remove_attributes(DOMDocument $doc, $names) {
 // -------------- SORTING FUNCTIONS -----------
 function get_content_sorters() {
   return array(
-    'native' => "Native",
-    'time' => "Newest",
-    'views' => "Views",
-    'comments' => "Comments",
-    'comments_to_views' => "Comments/views",
-    'comments_to_time' => "Comments/time",
-    'views_to_time' => "Views/time",
+    'native' => "רגיל",
+    'time' => "זמן",
+    'views' => "צפיות",
+    'comments' => "תגובות",
+    'comments_to_views' => "תגובות/צפיות",
+    'comments_to_time' => "תגובות/זמן",
+    'views_to_time' => "צפיות/זמן",
   );
 }
 

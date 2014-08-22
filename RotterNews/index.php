@@ -13,7 +13,7 @@ header('Content-type: text/html; charset=UTF-8');
   <title>RotterNews v0.3</title>
   <script type="text/javascript" src="lib/jquery-1.11.1.js"></script>
   <script type="text/javascript" src="lib/shadowbox/shadowbox.js"></script>
-  <script type="text/javascript" src="lib/jquery.timeago.js"></script>
+  <script type="text/javascript" src="lib/jquery.timeago.custom.js"></script>
   <script type="text/javascript" src="lib/jquery.timeago.he.custom.js"></script>
   <script type="text/javascript" src="RotterNews.js"></script>
   <link rel="stylesheet" type="text/css" href="style/RotterNews.css">
