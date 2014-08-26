@@ -38,6 +38,9 @@ header('Content-type: text/html; charset=UTF-8');
           <label>
             <input id="show-time" type="checkbox" checked="checked" /> זמנים
           </label>
+          <label> חיפוש
+            <input id="search" type="text" />
+          </label>
         </form>
       </div>
       <div>

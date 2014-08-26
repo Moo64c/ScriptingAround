@@ -4,7 +4,14 @@
  * Aggregate Rotter news forum to something reasonable.
  */
 
-jQuery(document).ready(function() {
+$(document).ready(function() {
+
+  $('#search').on('change keyup paste', function() {
+    var searchString = $('#search').val();
+    $("div.news-item-wrapper:not(:contains(" + searchString + "))").hide();
+    $("div.news-item-wrapper:contains(" + searchString + ")").show();
+  });
+
   rotterRefresh();
 });
 

@@ -21,6 +21,10 @@ body {
   font-size: 16px;
 }
 
+.news-container {
+  width: 100%;
+}
+
 .news-container .news-item a:visited {
   font-size: 10px !important;
   color: darkgrey;
@@ -92,6 +96,7 @@ img {
 abbr {
   color: hotpink;
   float: left;
+  margin-right: 1gpx;
 }
 
 .odd {
@@ -100,4 +105,8 @@ abbr {
 
 .even {
   background: #012121;
+}
+
+input#search {
+  width:100%;
 }

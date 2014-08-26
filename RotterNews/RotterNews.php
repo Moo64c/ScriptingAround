@@ -131,7 +131,7 @@ function get_update($sorting_method = 'native', $request_url = BASE_URL) {
   // Return the sorted array.
   foreach ($content as $id => $row) {
     $class = $id % 2 == 0 ? "even" : "odd";
-    $print .= '<div class="'. $class . '">';
+    $print .= '<div class="news-item-wrapper '. $class . '">';
     $print .= $row['to_print'];
     $print .= '</div>';
   }
