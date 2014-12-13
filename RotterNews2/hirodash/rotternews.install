@@ -1,0 +1,10 @@
+<?php
+
+/**
+ * Implements hook_install().
+ */
+function rotternews_install() {
+  // Set the default theme.
+  variable_set('admin_theme', 'seven');
+  variable_set('theme_default', 'bartik');
+}
