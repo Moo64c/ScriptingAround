@@ -22,13 +22,13 @@ a:visited {
 }
 .odd .news-item > a{
   border-bottom: 1px solid #CCCCCC;
-  color: lime;
+  color: darkorange;
   text-decoration: none;
 }
 
 .even .news-item > a{
   border-bottom: 1px solid #CCCCCC;
-  color: #9F0;
+  color: chocolate;
   text-decoration: none;
 }
 
