@@ -19,7 +19,7 @@ body {
 }
 .odd .news-item > a{
   border-bottom: 1px solid #CCCCCC;
-  color: #22FF4F;
+  color: lime;
 }
 
 .even .news-item > a{
