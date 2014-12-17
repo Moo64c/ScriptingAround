@@ -62,7 +62,7 @@ font[color="000099"], font[color="#000099"]{
 }
 
 #rotter-refresh button {
-  margin: 10px;
+  margin: 10px 0px 10px 0px;
   height: 100px;
   width: 100px;
   color: white;
