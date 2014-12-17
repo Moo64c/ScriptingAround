@@ -71,6 +71,8 @@ font[color="000099"], font[color="#000099"]{
   background-repeat: no-repeat;
   background-position: right top;
   background-size: 100px 100px;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
 }
 
 img#sb-player {
