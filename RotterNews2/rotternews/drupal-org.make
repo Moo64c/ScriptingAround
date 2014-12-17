@@ -38,8 +38,27 @@ projects[strongarm][version] = "2.0"
 projects[token][subdir] = "contrib"
 projects[token][version] = "1.5"
 
+projects[title][subdir] = "contrib"
+projects[title][version] = "1.0-alpha7"
+
 projects[views][subdir] = "contrib"
 projects[views][version] = "3.7"
 
 projects[views_bulk_operations][subdir] = "contrib"
 projects[views_bulk_operations][version] = "3.2"
+
+projects[restful][download][type] = "git"
+projects[restful][download][url] = "https://github.com/Gizra/restful.git"
+projects[restful][download][branch] = 7.x-1.x
+projects[restful][subdir] = "contrib"
+projects[restful][type] = "module"
+
+; Libraries
+libraries[bootstrap_sass][download][type] = "file"
+libraries[bootstrap_sass][type] = "libraries"
+libraries[bootstrap_sass][download][url] = "https://github.com/twbs/bootstrap-sass/archive/v3.1.1.zip"
+
+; Themes
+projects[bootstrap][subdir] = "contrib"
+projects[bootstrap][version] = "3.0"
+projects[bootstrap][type] = "theme"

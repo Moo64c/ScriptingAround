@@ -1,6 +1,6 @@
 body {
   direction: rtl;
-  background: #011 !important;
+  background: black !important;
   color: white;
 }
 
@@ -17,8 +17,20 @@ body {
 .main-container {
   width: 100%;
 }
+.odd .news-item > a{
+  border-bottom: 1px solid #CCCCCC;
+  color: #22FF4F;
+}
+
+.even .news-item > a{
+  border-bottom: 1px solid #CCCCCC;
+  color: #9F0;
+}
+
 .news-item a {
   font-size: 16px;
+  color: white;
+  text-decoration-style: double;
 }
 
 .news-container {
@@ -32,10 +44,6 @@ body {
 
 font[color="000099"], font[color="#000099"]{
   color: lightgrey!important;
-}
-
-span {
-  color: white !important;
 }
 
 .content-holder {
@@ -79,6 +87,7 @@ font {
 
 .content-holder img {
   max-width: 100%;
+  margin: auto;
 }
 
 img {
@@ -94,17 +103,17 @@ img {
 }
 
 abbr {
-  color: hotpink;
+  color: darkorange;
   float: left;
   margin-right: 1gpx;
 }
 
 .odd {
-  background: #011;
+  background: #120;
 }
 
 .even {
-  background: #012121;
+  background: #010;
 }
 
 input#search {

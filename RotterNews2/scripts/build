@@ -32,5 +32,5 @@ set -xe
   fi
 
   # Move the profile in place.
-  ln -s ../../rotternews www/profiles/rotternews 
+  ln -s ../../rotternews www/profiles/rotternews
 )

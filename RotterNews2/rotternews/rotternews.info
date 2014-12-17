@@ -1,5 +1,5 @@
-name = hirodash
-description = HiroDashboard profile
+name = rotternews
+description = Rotternews profile
 version = VERSION
 core = 7.x
 
@@ -34,27 +34,22 @@ dependencies[] = entity_token
 dependencies[] = entityreference
 dependencies[] = features
 dependencies[] = libraries
-dependencies[] = message
-dependencies[] = message_notify
-dependencies[] = message_ui
 dependencies[] = module_filter
-dependencies[] = og_context
-dependencies[] = og_ui
 dependencies[] = page_manager
 dependencies[] = panels
 dependencies[] = pathauto
-dependencies[] = password_policy
 dependencies[] = strongarm
 dependencies[] = token
-dependencies[] = tzfield
 dependencies[] = views
 dependencies[] = views_content
 dependencies[] = views_bulk_operations
+dependencies[] = restful
+dependencies[] = search_api
+dependencies[] = title
+
 
 ; Custom modules
-dependencies[] = hiro
-dependencies[] = hiro_dashboard
+dependencies[] = rotternews
 
 ; Development
 dependencies[] = devel
-dependencies[] = views_ui

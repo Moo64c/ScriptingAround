@@ -7,10 +7,11 @@ date_default_timezone_set("Asia/Jerusalem");
 
 /**
  * @param $node
+ * @param $extra_removal
  * @return mixed
  * Retrieve full HTML from inside a node.
  */
-function innerXML($node) {
+function innerXML($node, $extra_removal = "") {
   $doc  = $node->ownerDocument;
   $frag = $doc->createDocumentFragment();
   foreach ($node->childNodes as $child)     {
@@ -19,10 +20,23 @@ function innerXML($node) {
 
   $text = $doc->saveXML($frag);
 
-  // Handle signatures.
-  $text = str_replace('src="http://rotter.net/User_files/forum/signatures/', "src=\"style/images/signature.png?q=", $text);
-  $text = str_replace('src="/User_files/forum/signatures/', "src=\"style/images/signature.png?q=", $text);
-  $text = str_replace('href="/User_files/forum/signatures/', "href=\"http://rotter.net/User_files/forum/signatures/", $text);
+  // Cleanup strings.
+  $replace_strings = array(
+    // Remove internal styles.
+    'style="' => '"',
+    '<b>' => '',
+    $extra_removal => "",
+    // Width thingy.
+    'max-width:600px;' => "" ,
+    // Signatures.
+    'src="http://rotter.net/User_files/forum/signatures/' =>  "src=\"style/images/signature.png\" width=\"10px",
+    'src="/User_files/forum/signatures/' =>  "src=\"style/images/signature.png\" width=\"10px",
+    'href="/User_files/forum/signatures/' =>  "href=\"http://rotter.net/User_files/forum/signatures/",
+  );
+
+  foreach ($replace_strings as  $string => $replacement) {
+    $text = str_replace($string, $replacement, $text);
+  }
 
   return $text;
 }
@@ -103,7 +117,7 @@ function get_update($sorting_method = 'native', $request_url = BASE_URL) {
       // Add the rows to be printed.
       $local_print .= '<abbr class="timeago" title="' . gmdate('Y-m-d\TH:i:s\Z', $timestamp) . '"></abbr>';
       $local_print .= '<div class="news-item" id="news-item-' . $id . '">';
-      $local_print .= innerXML($row);
+      $local_print .= innerXML($link_parent->lastChild->lastChild);
       $local_print .= '<div class="content-holder" id="content-holder-'. $id . '"></div>';
       $local_print .= '</div>';
 
@@ -238,8 +252,8 @@ function _remove_attributes(DOMDocument $doc, $names) {
 // -------------- SORTING FUNCTIONS -----------
 function get_content_sorters() {
   return array(
-    'native' => "רגיל",
     'time' => "זמן",
+    'native' => "רגיל",
     'views' => "צפיות",
     'comments' => "תגובות",
     'comments_to_views' => "תגובות/צפיות",
