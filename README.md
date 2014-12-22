@@ -4,7 +4,7 @@ ScriptingAround
 Scripting attempts in various languages
 
 
-RotterNews (v0.3)
+RotterNews (v0.4)
 ------
 
 PHP/jQuery used to get a nice look on the news displayed from Rotter.net scoop forum.

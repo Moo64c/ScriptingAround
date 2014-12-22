@@ -10,7 +10,7 @@ header('Content-type: text/html; charset=UTF-8');
 <html>
 <head profile="http://www.w3.org/2005/10/profile">
   <link rel="icon" type="image/png" href="style/images/favicon.ico">
-  <title>RotterNews v0.3</title>
+  <title>RotterNews v0.4</title>
   <script type="text/javascript" src="lib/jquery-1.11.1.js"></script>
   <script type="text/javascript" src="lib/shadowbox/shadowbox.js"></script>
   <script type="text/javascript" src="lib/jquery.timeago.custom.js"></script>
