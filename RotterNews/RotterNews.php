@@ -57,7 +57,11 @@ function innerXML($node, $extra_removal = "") {
  *  HTML including the actual news.
  */
 function get_update($sorting_method = 'native', $request_url = BASE_URL) {
-  $doc = get_DOM_from_url($request_url);
+  $doc = "";
+  if (!$doc = get_DOM_from_url($request_url)) {
+    print _get_error_message();
+    return;
+  }
   $load_time = time();
 
   $links = $doc->getElementsByTagName('a');
@@ -186,7 +190,7 @@ function get_first_post($url, $id) {
   $new_url = "http://rotter.net/forum/scoops1/$om.shtml";
   $doc = "";
   if (!$doc = get_DOM_from_url($new_url)) {
-    print "Error retrieving data";
+    print _get_error_message();
     return;
   }
   // Find the main "div" and work from there.
@@ -250,6 +254,14 @@ function _remove_attributes(DOMDocument $doc, $names) {
   }
 }
 
+
+function _get_error_message() {
+  return '<div class="news-container odd">
+            <div class="news-item">
+              <a>Error retrieving data.</a>
+            </div>
+          </div>';
+}
 // -------------- SORTING FUNCTIONS -----------
 function get_content_sorters() {
   return array(
