@@ -28,6 +28,12 @@ function innerXML($node, $extra_removal = "") {
     $extra_removal => "",
     // Width thingy.
     'max-width:600px;' => "" ,
+    '<font>' => "",
+    '</font>' => '',
+    '<td>' => "",
+    '</td>' => '',
+    '<table>' => "",
+    '</table>' => '',
     // Signatures.
     'src="http://rotter.net/User_files/forum/signatures/' =>  "src=\"style/images/signature.png\" width=\"10px",
     'src="/User_files/forum/signatures/' =>  "src=\"style/images/signature.png\" width=\"10px",
@@ -156,9 +162,13 @@ function get_DOM_from_url($request_url) {
   $str = curl_exec($curl);
   curl_close($curl);
 
-  // Create a DOM object
+  if (!$str)  {
+    return FALSE;
+  }
+
+  // Create a DOM object.
   $html_base = new DOMDocument();
-  // Load HTML from a string
+  // Load HTML from a string.
   $html_base->loadHTML($str);
   return $html_base;
 }
@@ -172,10 +182,13 @@ function get_DOM_from_url($request_url) {
  */
 function get_first_post($url, $id) {
   $url_parts = explode("&", $url);
-  print_r($url_parts);
   $om = str_replace("om=", "", $url_parts[1]);
   $new_url = "http://rotter.net/forum/scoops1/$om.shtml";
-  $doc = get_DOM_from_url($new_url);
+  $doc = "";
+  if (!$doc = get_DOM_from_url($new_url)) {
+    print "Error retrieving data";
+    return;
+  }
   // Find the main "div" and work from there.
   $tables_rows = $doc->getElementsByTagName('tr');
   for($i = 0; $i < $tables_rows->length; $i++) {
