@@ -65,8 +65,8 @@ function get_update($sorting_method = 'native', $request_url = BASE_URL) {
 
     if (strpos($url, 'forum=scoops1') && strpos($url, 'az=read_count') && !strpos($url, "mm=") ) {
 
-      $row = $link->parentNode->parentNode->parentNode->parentNode;
       // Change link.
+      $external_link_image = $doc->createElement('img');
       foreach ($link->attributes as $attribute) {
         if ($attribute->name == 'href') {
           $href = urlencode($attribute->value);
@@ -77,22 +77,17 @@ function get_update($sorting_method = 'native', $request_url = BASE_URL) {
           // Add external link to the original post.
           $external_link = $doc->createElement("a");
 
-          $external_link_image = $doc->createElement('img');
           $external_link_image->setAttribute('src', 'style/images/external.png');
           $external_link_image->setAttribute('class', 'external-image');
           $external_link->appendChild($external_link_image);
           $external_link->setAttribute("href", 'javascript:openInNewWindow("' . $href . '")');
           $external_link->setAttribute("target", "_blank");
-
-          $row->insertBefore($external_link, $link->parentNode->parentNode->parentNode->previousSibling);
-
         }
       }
       $link_parent = $link->parentNode->parentNode->parentNode;
 
       // Get the date and time.
       $time = $link_parent->nextSibling->nextSibling->firstChild->nextSibling->firstChild;
-      $time->removeChild($time->firstChild->nextSibling->nextSibling->nextSibling);
       $date = trim($time->firstChild->textContent, chr(0xC2).chr(0xA0));
       $date = explode(".", $date);
       // Should be good until the year 2100.
@@ -102,19 +97,12 @@ function get_update($sorting_method = 'native', $request_url = BASE_URL) {
 
       $timestamp = strtotime("$date $time");
 
-      // Remove unnecessary information.
-      $row->removeChild($link_parent->nextSibling->nextSibling);
-      $row->removeChild($link_parent->nextSibling->nextSibling->nextSibling);
-      $row->removeChild($link_parent->previousSibling);
-
       $comments = $link_parent->nextSibling->nextSibling->nextSibling->nextSibling->textContent;
       $views = $link_parent->nextSibling->nextSibling->nextSibling->nextSibling->nextSibling->nextSibling->firstChild->nextSibling->firstChild->textContent;
       $views = intval($views) == 0 ? 1 : intval($views);
 
-      $row->removeChild($link_parent->nextSibling->nextSibling->nextSibling->nextSibling);
-      $row->removeChild($link_parent->nextSibling->nextSibling->nextSibling->nextSibling->nextSibling);
-
       // Add the rows to be printed.
+      $local_print .= innerXML($external_link);
       $local_print .= '<abbr class="timeago" title="' . gmdate('Y-m-d\TH:i:s\Z', $timestamp) . '"></abbr>';
       $local_print .= '<div class="news-item" id="news-item-' . $id . '">';
       $local_print .= innerXML($link_parent->lastChild->lastChild);

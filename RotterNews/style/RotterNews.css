@@ -8,7 +8,9 @@ a:visited {
 
 }
 .external-image {
-  width: 25px !important;
+  width: 20px !important;
+  float: right;
+  margin-left: 5px;
   -webkit-filter: brightness(3);
   filter: brightness(3);
 }
