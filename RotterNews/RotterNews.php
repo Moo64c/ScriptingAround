@@ -76,7 +76,7 @@ function get_update($sorting_method = 'native', $request_url = BASE_URL) {
     if (strpos($url, 'forum=scoops1') && strpos($url, 'az=read_count') && !strpos($url, "mm=") ) {
 
       // Change link.
-      $external_link_image = $doc->createElement('img');
+      $frag = "";
       foreach ($link->attributes as $attribute) {
         if ($attribute->name == 'href') {
           $href = urlencode($attribute->value);
@@ -87,11 +87,14 @@ function get_update($sorting_method = 'native', $request_url = BASE_URL) {
           // Add external link to the original post.
           $external_link = $doc->createElement("a");
 
+        $external_link_image = $doc->createElement('img');
           $external_link_image->setAttribute('src', 'style/images/external.png');
           $external_link_image->setAttribute('class', 'external-image');
           $external_link->appendChild($external_link_image);
           $external_link->setAttribute("href", 'javascript:openInNewWindow("' . $href . '")');
           $external_link->setAttribute("target", "_blank");
+          $frag = $doc->createDocumentFragment();
+          $frag->appendChild($external_link->cloneNode(TRUE));
         }
       }
       $link_parent = $link->parentNode->parentNode->parentNode;
@@ -112,7 +115,7 @@ function get_update($sorting_method = 'native', $request_url = BASE_URL) {
       $views = intval($views) == 0 ? 1 : intval($views);
 
       // Add the rows to be printed.
-      $local_print .= innerXML($external_link);
+      $local_print .= innerXML($frag);
       $local_print .= '<abbr class="timeago" title="' . gmdate('Y-m-d\TH:i:s\Z', $timestamp) . '"></abbr>';
       $local_print .= '<div class="news-item" id="news-item-' . $id . '">';
       $local_print .= innerXML($link_parent->lastChild->lastChild);
