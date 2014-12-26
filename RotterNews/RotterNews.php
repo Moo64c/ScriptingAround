@@ -24,10 +24,11 @@ function innerXML($node, $extra_removal = "") {
   $replace_strings = array(
     // Remove internal styles.
     'style="' => '"',
+    'color="' => '"',
     '<b>' => '',
+    'width="' => '"',
     $extra_removal => "",
     // Width thingy.
-    'max-width:600px;' => "" ,
     '<font>' => "",
     '</font>' => '',
     '<td>' => "",
@@ -40,9 +41,7 @@ function innerXML($node, $extra_removal = "") {
     'href="/User_files/forum/signatures/' =>  "href=\"http://rotter.net/User_files/forum/signatures/",
   );
 
-  foreach ($replace_strings as  $string => $replacement) {
-    $text = str_replace($string, $replacement, $text);
-  }
+  $text = str_replace(array_keys($replace_strings), $replace_strings, $text);
 
   return $text;
 }
