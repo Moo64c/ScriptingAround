@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the rotternews feature.
+ */
+
+include_once 'rotternews.features.inc';

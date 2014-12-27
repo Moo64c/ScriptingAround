@@ -1,0 +1,6 @@
+name = rotternews_pages
+core = 7.x
+package = Features
+version = 7.x-1.0
+project = rotternews_pages
+features[features_api][] = api:1

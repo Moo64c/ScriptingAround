@@ -1,0 +1,173 @@
+<?php
+
+/**
+ * Implements hook_install().
+ */
+function cri_install() {
+  cri_standard_install();
+
+  // Fixes problems when the CSV files used for importing have been created
+  // on a Mac, by forcing PHP to detect the appropriate line endings.
+  ini_set('auto_detect_line_endings', TRUE);
+
+  // Enable our themes.
+  theme_enable(array('seven', 'bootstrap', 'bootstrap_subtheme'));
+
+  // Set the default theme.
+  variable_set('theme_default', 'bootstrap_subtheme');
+
+  // Enable node view page override by Page manager module.
+  variable_set('page_manager_node_view_disabled', FALSE);
+
+  // Enabling the taxonomy term override page.
+  variable_set('page_manager_term_view_disabled', FALSE);
+
+  // Set node edit theme to be the admin theme.
+  variable_set('node_admin_theme', TRUE);
+
+  // Set required date API variables.
+  // See date_api_status().
+  date_default_timezone_set('Asia/Jerusalem');
+  variable_set('date_default_timezone', 'Asia/Jerusalem');
+  variable_set('date_first_day', 1);
+}
+
+/**
+ * Copied and adjusted from Standard profile.
+ *
+ * @see standard_install()
+ */
+function cri_standard_install() {
+  // Add text formats.
+  $filtered_html_format = array(
+    'format' => 'filtered_html',
+    'name' => 'Filtered HTML',
+    'weight' => 0,
+    'filters' => array(
+      // URL filter.
+      'filter_url' => array(
+        'weight' => 0,
+        'status' => 1,
+      ),
+      // HTML filter.
+      'filter_html' => array(
+        'weight' => 1,
+        'status' => 1,
+      ),
+      // Line break filter.
+      'filter_autop' => array(
+        'weight' => 2,
+        'status' => 1,
+      ),
+      // HTML corrector filter.
+      'filter_htmlcorrector' => array(
+        'weight' => 10,
+        'status' => 1,
+      ),
+      'pathologic' => array(
+        'weight' => 50,
+        'status' => 1,
+        'settings' => array(
+          'local_paths' => '',
+          'protocol_style' => 'full',
+        ),
+      ),
+    ),
+  );
+  $filtered_html_format = (object) $filtered_html_format;
+  filter_format_save($filtered_html_format);
+
+  $full_html_format = array(
+    'format' => 'full_html',
+    'name' => 'Full HTML',
+    'weight' => 1,
+    'filters' => array(
+      // URL filter.
+      'filter_url' => array(
+        'weight' => 0,
+        'status' => 1,
+      ),
+      // Line break filter.
+      'filter_autop' => array(
+        'weight' => 1,
+        'status' => 1,
+      ),
+      // HTML corrector filter.
+      'filter_htmlcorrector' => array(
+        'weight' => 10,
+        'status' => 1,
+      ),
+      'pathologic' => array(
+        'weight' => 50,
+        'status' => 1,
+        'settings' => array(
+          'local_paths' => '',
+          'protocol_style' => 'full',
+        ),
+      ),
+    ),
+  );
+  $full_html_format = (object) $full_html_format;
+  filter_format_save($full_html_format);
+
+  // Enable some standard blocks.
+  $default_theme = variable_get('theme_default', 'bartik');
+
+  $values = array(
+    array(
+      'module' => 'system',
+      'delta' => 'main',
+      'theme' => $default_theme,
+      'status' => 1,
+      'weight' => 0,
+      'region' => 'content',
+      'pages' => '',
+      'cache' => -1,
+    ),
+  );
+  $query = db_insert('block')->fields(array('module', 'delta', 'theme', 'status', 'weight', 'region', 'pages', 'cache'));
+  foreach ($values as $record) {
+    $query->values($record);
+  }
+  $query->execute();
+
+  // Enable default permissions for anonymous users.
+  $permissions = array(
+    'access content',
+    'access overlay',
+  );
+
+  user_role_grant_permissions(DRUPAL_ANONYMOUS_RID, $permissions);
+
+  user_role_grant_permissions(DRUPAL_AUTHENTICATED_RID, $permissions);
+
+  // Add content permissions.
+  foreach (array_keys(node_type_get_types()) as $content_type) {
+    $permissions[] = "create $content_type content";
+    $permissions[] = "edit any $content_type content";
+    $permissions[] = "edit own $content_type content";
+    $permissions[] = "delete any $content_type content";
+    $permissions[] = "delete own $content_type content";
+  }
+
+
+  // Create a default role for site administrators, with all available permissions assigned.
+  $admin_role = new stdClass();
+  $admin_role->name = 'administrator';
+  $admin_role->weight = 2;
+  user_role_save($admin_role);
+  user_role_grant_permissions($admin_role->rid, array_keys(module_invoke_all('permission')));
+  // Set this as the administrator role.
+  variable_set('user_admin_role', $admin_role->rid);
+
+  // Assign user 1 the "administrator" role.
+  db_insert('users_roles')
+    ->fields(array('uid' => 1, 'rid' => $admin_role->rid))
+    ->execute();
+
+  variable_set('admin_theme', 'seven');
+  variable_set('node_admin_theme', '1');
+
+  node_access_rebuild(TRUE);
+}
+

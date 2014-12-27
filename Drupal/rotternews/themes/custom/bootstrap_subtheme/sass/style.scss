@@ -1,0 +1,19 @@
+
+.contact-form {
+  width: 50%;
+  margin: 10px auto;
+  color: black;
+
+  label {
+    float: right;
+  }
+
+  input[type=checkbox] {
+    float: right;
+    margin-left: 10px;
+  }
+}
+
+body .main .content .text-content {
+  margin-left: 10px;
+}

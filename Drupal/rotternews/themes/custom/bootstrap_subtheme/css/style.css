@@ -1,0 +1,20 @@
+/* line 2, ../sass/style.scss */
+.contact-form {
+  width: 50%;
+  margin: 10px auto;
+  color: black;
+}
+/* line 7, ../sass/style.scss */
+.contact-form label {
+  float: right;
+}
+/* line 11, ../sass/style.scss */
+.contact-form input[type=checkbox] {
+  float: right;
+  margin-left: 10px;
+}
+
+/* line 17, ../sass/style.scss */
+body .main .content .text-content {
+  margin-left: 10px;
+}
