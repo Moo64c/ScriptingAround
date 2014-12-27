@@ -3,8 +3,8 @@
 /**
  * Implements hook_install().
  */
-function cri_install() {
-  cri_standard_install();
+function rotternews_install() {
+  rotternews_standard_install();
 
   // Fixes problems when the CSV files used for importing have been created
   // on a Mac, by forcing PHP to detect the appropriate line endings.
@@ -37,7 +37,7 @@ function cri_install() {
  *
  * @see standard_install()
  */
-function cri_standard_install() {
+function rotternews_standard_install() {
   // Add text formats.
   $filtered_html_format = array(
     'format' => 'filtered_html',

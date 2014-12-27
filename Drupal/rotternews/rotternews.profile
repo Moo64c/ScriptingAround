@@ -9,7 +9,7 @@
  *
  * Allows the profile to alter the site configuration form.
  */
-function cri_form_install_configure_form_alter(&$form, $form_state) {
+function rotternews_form_install_configure_form_alter(&$form, $form_state) {
   // Pre-populate the site name with the server name.
   $form['site_information']['site_name']['#default_value'] = $_SERVER['SERVER_NAME'];
 }
@@ -17,9 +17,9 @@ function cri_form_install_configure_form_alter(&$form, $form_state) {
 /**
  * Implements hook_install_tasks().
  */
-function cri_install_tasks() {
+function rotternews_install_tasks() {
   $tasks = array();
-  $tasks['cri_set_variables'] = array(
+  $tasks['rotternews_set_variables'] = array(
     'display_name' => st('Set Variables'),
     'display' => FALSE,
   );
@@ -30,10 +30,10 @@ function cri_install_tasks() {
 /**
  * Task callback; Set variables.
  */
-function cri_set_variables() {
+function rotternews_set_variables() {
   $variables = array(
     // Mime-mail
-    'site_name' => 'CRI',
+    'site_name' => 'rotternews',
     // Mime-mail
     'mimemail_format' => 'full_html',
     'mimemail_sitestyle' => FALSE,
@@ -41,7 +41,7 @@ function cri_set_variables() {
     'jquery_update_jquery_version' => 1.8,
     'jquery_update_jquery_admin_version' => 1.5,
     // Images path.
-    'cri_images_path' => drupal_get_path('theme', 'bootstrap_subtheme') . '/images',
+    'rotternews_images_path' => drupal_get_path('theme', 'bootstrap_subtheme') . '/images',
     // Define the page path.
     'site_frontpage' => 'home',
     'page_manager_user_view_disabled' => FALSE,
