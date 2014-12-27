@@ -6,7 +6,7 @@ set -xe
 
 # Build the profile itself.
 (
-  cd mothernity
+  cd rotternews
   $DRUSH make --no-core --contrib-destination drupal-org.make .
   cd ..
 )
@@ -23,7 +23,7 @@ set -xe
   rm -Rf www || true
 
   # Build core.
-  $DRUSH make mothernity/drupal-org-core.make www
+  $DRUSH make rotternews/drupal-org-core.make www
 
   # Restore the sites directory.
   if [ -d sites-backup ]; then
@@ -32,8 +32,5 @@ set -xe
   fi
 
   # Move the profile in place.
-  ln -s ../../mothernity www/profiles/mothernity
-
-  # Copy the redirector file to its place.
-  cp www/profiles/mothernity/R-mothernist.html www/
+  ln -s ../../rotternews www/profiles/rotternews
 )
