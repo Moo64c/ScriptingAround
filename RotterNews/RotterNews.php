@@ -203,18 +203,13 @@ function get_first_post($url, $id) {
         $image_url = $image->attributes->getNamedItem("src")->nodeValue;
         // Remove the image, to be re-inserted later.
         $parent =$image->parentNode;
-        $found = FALSE;
 
         foreach(RotterInfo::$image_removal_hints as $needle) {
-          if (strpos(strtolower($image_url), $needle) !== FALSE) {
-            $found = TRUE;
+          $image_url_lower = strtolower($image_url);
+          if (strpos($image_url_lower, strtolower($needle)) !== FALSE) {
+            $image_url ="";
             break;
           }
-        }
-        if ($found) {
-          // This is a signature / avatar image - just remove it.
-          $image->parentNode->parentNode->removeChild($image->parentNode);
-          continue;
         }
 
         // Create a new image without any attributes, with shadowbox link.

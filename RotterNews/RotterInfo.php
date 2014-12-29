@@ -20,12 +20,16 @@ class RotterInfo {
     "avatar",
     "customavatars",
     "images/avatars/",
-    "forum/signatures",
+    "signatures",
     "customprofilepics",
     "images/spacer.gif",
-    "/profilepic",
+    "profilepic",
     "549aa5804f857de3.jpg",
+    "52ca876d7968bae3.jpg",
     "pmwiki/pub/images/Slig",
+    "rotter.net/forum/Images/oranis/set1_14.gif",
+    "animated-gifs.",
+    "emoticons",
   );
 
   // Cleanup strings.
@@ -43,8 +47,6 @@ class RotterInfo {
     '</td>' => '',
     '<table>' => "",
     '</table>' => '',
-    // Signatures.
-    'customprofilepics' => '',
   );
 
   /**
