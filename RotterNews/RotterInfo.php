@@ -30,6 +30,7 @@ class RotterInfo {
     "rotter.net/forum/Images/oranis/set1_14.gif",
     "animated-gifs.",
     "emoticons",
+    "al-magor.com/wp-content/uploads/2012/08/rifle_sight-150x150.jpg",
   );
 
   // Cleanup strings.
