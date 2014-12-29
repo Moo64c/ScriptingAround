@@ -2,6 +2,7 @@
 
 // Final html to be printed in the index.php file.
 $raw_html = "";
+$version = "0.41";
 define("BASE_URL", "http://rotter.net/scoopscache.html");
 date_default_timezone_set("Asia/Jerusalem");
 
@@ -26,7 +27,8 @@ function innerXML($node, $extra_removal = "") {
     'style="' => '"',
     'color="' => '"',
     '<b>' => '',
-    'width="' => '"',
+    'width="' => 'width="100%" "',
+    'width:' => 'width:100%;',
     $extra_removal => "",
     // Width thingy.
     '<font>' => "",
