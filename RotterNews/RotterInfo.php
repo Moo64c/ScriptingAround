@@ -14,12 +14,14 @@ class RotterInfo {
 
   public static $image_removal_hints = array(
     "avatar",
+    "customavatars",
     "images/avatars/",
     "forum/signatures",
     "customprofilepics",
-    "http://rotter.net/forum/Images/spacer.gif",
-    "http://rotter.net/User_files/forum/549aa5804f857de3.jpg",
+    "images/spacer.gif",
     "/profilepic",
+    "549aa5804f857de3.jpg",
+    "pmwiki/pub/images/Slig",
   );
 
   // Cleanup strings.
@@ -39,6 +41,5 @@ class RotterInfo {
     '</table>' => '',
     // Signatures.
     'customprofilepics' => '',
-    "pmwiki/pub/images/Slig" => '',
   );
 };

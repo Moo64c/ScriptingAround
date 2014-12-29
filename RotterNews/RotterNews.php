@@ -201,8 +201,10 @@ function get_first_post($url, $id) {
       // Add link for shadowbox before each image.
       foreach($doc->getElementsByTagName('img') as $image) {
         $image_url = $image->attributes->getNamedItem("src")->nodeValue;
-
+        // Remove the image, to be re-inserted later.
+        $parent =$image->parentNode;
         $found = FALSE;
+
         foreach(RotterInfo::$image_removal_hints as $needle) {
           if (strpos(strtolower($image_url), $needle) !== FALSE) {
             $found = TRUE;
@@ -210,29 +212,23 @@ function get_first_post($url, $id) {
           }
         }
         if ($found) {
-          // This is an avatar image - just remove it.
+          // This is a signature / avatar image - just remove it.
           $image->parentNode->parentNode->removeChild($image->parentNode);
           continue;
         }
-        // Leave only the src attribute on the image.
-        $attributes = $image->attributes ;
-        $index = 0;
-        while ($attributes->length > 1) {
-          if ($attributes->item($index)->name !="src") {
-            $image->removeAttribute($attributes->item($index)->name);
-          }
-          else {
-            $index++;
-          }
-        }
+
+        // Create a new image without any attributes, with shadowbox link.
+        $new_image = $doc->createElement('img');
+        $new_image->setAttribute("src", $image_url);
+
         $shadow_href = $doc->createElement('a');
         $shadow_href->setAttribute("rel", "shadowbox[post-$id]");
         $shadow_href->setAttribute("href", $image_url);
         $shadow_href->setAttribute("class", "shadowbox-link");
-        $clone = $image->cloneNode();
+        $clone = $new_image->cloneNode();
         $shadow_href->appendChild( $clone );
 
-        $image->parentNode->replaceChild( $shadow_href, $image );
+        $parent->replaceChild( $shadow_href, $image );
       };
 
       print innerXML($table_row);
