@@ -8,9 +8,11 @@
 
 /**
  * Class RotterInfo
- * Hold string information about string cleaning.
+ * Hold information for rotter news.
  */
 class RotterInfo {
+
+  public static $version = "0.42";
 
   public static $image_removal_hints = array(
     "avatar",

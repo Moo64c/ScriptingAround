@@ -2,7 +2,7 @@
 require_once("RotterInfo.php");
 // Final html to be printed in the index.php file.
 $raw_html = "";
-$version = "0.41";
+$version = RotterInfo::$version;
 define("BASE_URL", "http://rotter.net/scoopscache.html");
 date_default_timezone_set("Asia/Jerusalem");
 
