@@ -13,6 +13,8 @@
 class RotterInfo {
 
   public static $version = "0.42";
+  public static $base_url = "http://rotter.net/scoopscache.html";
+  public static $default_sort = "time";
 
   public static $image_removal_hints = array(
     "avatar",
@@ -44,4 +46,16 @@ class RotterInfo {
     // Signatures.
     'customprofilepics' => '',
   );
+
+  /**
+   * @return string
+   * Error message when failing to load request.
+   */
+  public static function _get_error_message() {
+    return '<div class="news-container odd">
+            <div class="news-item">
+              Error retrieving data.
+            </div>
+          </div>';
+  }
 };

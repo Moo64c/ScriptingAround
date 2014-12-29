@@ -1,9 +1,9 @@
 <?php
 require_once("RotterInfo.php");
-// Final html to be printed in the index.php file.
-$raw_html = "";
+require_once("RotterSort.php");
+
 $version = RotterInfo::$version;
-define("BASE_URL", "http://rotter.net/scoopscache.html");
+define("BASE_URL", RotterInfo::$base_url);
 date_default_timezone_set("Asia/Jerusalem");
 
 /**
@@ -257,45 +257,5 @@ function _remove_attributes(DOMDocument &$doc, $names) {
 
 
 function _get_error_message() {
-  return '<div class="news-container odd">
-            <div class="news-item">
-              <a>Error retrieving data.</a>
-            </div>
-          </div>';
-}
-// -------------- SORTING FUNCTIONS -----------
-function get_content_sorters() {
-  return array(
-    'time' => "זמן",
-    'native' => "רגיל",
-    'views' => "צפיות",
-    'comments' => "תגובות",
-    'comments_to_views' => "תגובות/צפיות",
-    'comments_to_time' => "תגובות/זמן",
-    'views_to_time' => "צפיות/זמן",
-  );
-}
-
-function content_sort_views($first_element, $second_element) {
-  return $second_element['views'] - $first_element['views'];
-}
-
-function content_sort_comments($first_element, $second_element) {
-  return $second_element['comments'] - $first_element['comments'];
-}
-
-function content_sort_time($first_element, $second_element) {
-  return $first_element['time_passed'] - $second_element['time_passed'];
-}
-
-function content_sort_comments_to_views($first_element, $second_element) {
-  return 1000 * (($second_element['comments'] / $second_element['views']) - ($first_element['comments'] / $first_element['views']));
-}
-
-function content_sort_comments_to_time($first_element, $second_element) {
-  return 1000 * (($second_element['comments'] / ($second_element['time_passed'])) - ($first_element['comments'] / ($first_element['time_passed'])));
-}
-
-function content_sort_views_to_time($first_element, $second_element) {
-  return 1000 * (($second_element['views'] / $second_element['time_passed']) - ($first_element['views'] / $first_element['time_passed']));
+  return RotterInfo::get_error_message();
 }

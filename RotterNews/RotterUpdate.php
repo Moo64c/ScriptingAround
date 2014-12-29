@@ -11,5 +11,5 @@ if ($_POST['firstPost'] == 1) {
   return;
 }
 
-$sorting_method = isset($_POST['sorting_method']) ? $_POST['sorting_method'] : 'native';
+$sorting_method = isset($_POST['sorting_method']) ? $_POST['sorting_method'] : RotterInfo::$default_sort;
 print get_update($sorting_method);
