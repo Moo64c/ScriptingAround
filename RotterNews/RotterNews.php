@@ -1,5 +1,5 @@
 <?php
-
+require_once("RotterInfo.php");
 // Final html to be printed in the index.php file.
 $raw_html = "";
 $version = "0.41";
@@ -21,29 +21,7 @@ function innerXML($node, $extra_removal = "") {
 
   $text = $doc->saveXML($frag);
 
-  // Cleanup strings.
-  $replace_strings = array(
-    // Remove internal styles.
-    'style="' => '"',
-    'color="' => '"',
-    '<b>' => '',
-    'width="' => 'width="100%" "',
-    'width:' => 'width:100%;',
-    $extra_removal => "",
-    // Width thingy.
-    '<font>' => "",
-    '</font>' => '',
-    '<td>' => "",
-    '</td>' => '',
-    '<table>' => "",
-    '</table>' => '',
-    // Signatures.
-    'src="http://rotter.net/User_files/forum/signatures/' =>  "src=\"style/images/signature.png\" width=\"10px",
-    'src="/User_files/forum/signatures/' =>  "src=\"style/images/signature.png\" width=\"10px",
-    'href="/User_files/forum/signatures/' =>  "href=\"http://rotter.net/User_files/forum/signatures/",
-  );
-
-  $text = str_replace(array_keys($replace_strings), $replace_strings, $text);
+  $text = str_replace(array_keys(RotterInfo::$replace_strings), RotterInfo::$replace_strings, $text);
 
   return $text;
 }
@@ -88,7 +66,7 @@ function get_update($sorting_method = 'native', $request_url = BASE_URL) {
           // Add external link to the original post.
           $external_link = $doc->createElement("a");
 
-        $external_link_image = $doc->createElement('img');
+          $external_link_image = $doc->createElement('img');
           $external_link_image->setAttribute('src', 'style/images/external.png');
           $external_link_image->setAttribute('class', 'external-image');
           $external_link->appendChild($external_link_image);
@@ -206,6 +184,11 @@ function get_first_post($url, $id) {
       // Remove attributes for "font" and "td" elements.
       _remove_attributes($doc, array("font", "td", "table"));
 
+      // Remove scripts.
+      foreach($doc->getElementsByTagName('script') as $script) {
+        $script->parentNode->parentNode->removeChild($script->parentNode);
+      }
+
       // Add a "target=_blank" to each link.
       foreach($doc->getElementsByTagName('a') as $link) {
         $link->setAttribute("target", "_blank");
@@ -218,12 +201,30 @@ function get_first_post($url, $id) {
       // Add link for shadowbox before each image.
       foreach($doc->getElementsByTagName('img') as $image) {
         $image_url = $image->attributes->getNamedItem("src")->nodeValue;
-        if (strpos($image_url, "Images/Avatars/")) {
+
+        $found = FALSE;
+        foreach(RotterInfo::$image_removal_hints as $needle) {
+          if (strpos(strtolower($image_url), $needle) !== FALSE) {
+            $found = TRUE;
+            break;
+          }
+        }
+        if ($found) {
           // This is an avatar image - just remove it.
           $image->parentNode->parentNode->removeChild($image->parentNode);
           continue;
         }
-
+        // Leave only the src attribute on the image.
+        $attributes = $image->attributes ;
+        $index = 0;
+        while ($attributes->length > 1) {
+          if ($attributes->item($index)->name !="src") {
+            $image->removeAttribute($attributes->item($index)->name);
+          }
+          else {
+            $index++;
+          }
+        }
         $shadow_href = $doc->createElement('a');
         $shadow_href->setAttribute("rel", "shadowbox[post-$id]");
         $shadow_href->setAttribute("href", $image_url);
@@ -247,7 +248,7 @@ function get_first_post($url, $id) {
  * @param $names array
  *   Array of strings to search for.
  */
-function _remove_attributes(DOMDocument $doc, $names) {
+function _remove_attributes(DOMDocument &$doc, $names) {
   foreach ($names as $name) {
     foreach($doc->getElementsByTagName($name) as $element) {
       $attributes = $element->attributes;
