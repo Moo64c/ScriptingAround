@@ -19,6 +19,7 @@ class RotterInfo {
     "customprofilepics",
     "http://rotter.net/forum/Images/spacer.gif",
     "http://rotter.net/User_files/forum/549aa5804f857de3.jpg",
+    "/profilepic",
   );
 
   // Cleanup strings.
@@ -38,8 +39,6 @@ class RotterInfo {
     '</table>' => '',
     // Signatures.
     'customprofilepics' => '',
-    'src="http://rotter.net/User_files/forum/signatures/' =>  "src=\"style/images/signature.png\" width=\"10px",
-    'src="/User_files/forum/signatures/' =>  "src=\"style/images/signature.png\" width=\"10px",
-    'href="/User_files/forum/signatures/' =>  "href=\"http://rotter.net/User_files/forum/signatures/",
+    "pmwiki/pub/images/Slig" => '',
   );
 };
