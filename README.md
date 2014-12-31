@@ -19,4 +19,4 @@ Sidebar of Twitter news, self-updating.
 
 Suggestions welcome (leave an issue).
 
-[Rotter news live example]:http://rotternews.2fh.co/RotterNews/
+[Rotter news live example]:http://rotternews.2fh.co/
