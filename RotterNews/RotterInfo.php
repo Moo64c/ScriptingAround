@@ -27,6 +27,7 @@ class RotterInfo {
     "549aa5804f857de3.jpg",
     "52ca876d7968bae3.jpg",
     "pmwiki/pub/images/Slig",
+    "imgur.com/9wkXNzq.png",
     "rotter.net/forum/Images/oranis/set1_14.gif",
     "animated-gifs.",
     "emoticons",

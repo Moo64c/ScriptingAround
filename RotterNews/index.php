@@ -44,7 +44,8 @@ header('Content-type: text/html; charset=UTF-8');
         </form>
       </div>
       <div>
-        <a href="https://github.com/Moo64c/ScriptingAround/tree/master/RotterNews">Github project</a>
+        <a href="https://github.com/Moo64c/ScriptingAround/tree/master/RotterNews" target="_blank">Github project</a><br/>
+        <a href="https://github.com/Moo64c/ScriptingAround/issues/new?title=Rotter%20news%20suggestion" target="_blank">Suggest an improvement</a>
       </div>
     </div>
     <div class="rotter-container col-md-6 float-right">

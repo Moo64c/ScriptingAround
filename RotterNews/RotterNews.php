@@ -201,7 +201,6 @@ function get_first_post($url, $id) {
       // Add link for shadowbox before each image.
       foreach($doc->getElementsByTagName('img') as $image) {
         $image_url = $image->attributes->getNamedItem("src")->nodeValue;
-        // Remove the image, to be re-inserted later.
         $parent =$image->parentNode;
 
         foreach(RotterInfo::$image_removal_hints as $needle) {
