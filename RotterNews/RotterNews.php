@@ -70,7 +70,7 @@ function get_update($sorting_method = 'native', $request_url = BASE_URL) {
           $external_link_image->setAttribute('src', 'style/images/external.png');
           $external_link_image->setAttribute('class', 'external-image');
           $external_link->appendChild($external_link_image);
-          $external_link->setAttribute("href", 'javascript:openInNewWindow("' . $href . '")');
+          $external_link->setAttribute("href", urldecode($href));
           $external_link->setAttribute("target", "_blank");
           $frag = $doc->createDocumentFragment();
           $frag->appendChild($external_link->cloneNode(TRUE));

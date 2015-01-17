@@ -44,8 +44,10 @@ header('Content-type: text/html; charset=UTF-8');
         </form>
       </div>
       <div>
-        <a href="https://github.com/Moo64c/ScriptingAround/tree/master/RotterNews" target="_blank">Github project</a><br/>
-        <a href="https://github.com/Moo64c/ScriptingAround/issues/new?title=Rotter%20news%20suggestion" target="_blank">Suggest an improvement</a>
+        <a href="https://github.com/Moo64c/ScriptingAround/tree/master/RotterNews"
+           target="_blank">Github project</a><br/>
+        <a href="https://github.com/Moo64c/ScriptingAround/issues/new?title=Rotter%20news%20suggestion"
+           target="_blank">Suggest an improvement</a>
       </div>
     </div>
     <div class="rotter-container col-md-6 float-right">
@@ -54,8 +56,12 @@ header('Content-type: text/html; charset=UTF-8');
     </div>
     <div class="twitter-container col-md-5  float-right">
       <!-- Twitter feed -->
-      <a class="twitter-timeline" href="https://twitter.com/moo64c/lists/news" data-widget-id="497527332211421184">Tweets from https://twitter.com/moo64c/lists/news</a>
-      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+      <a class="twitter-timeline" href="https://twitter.com/moo64c/lists/news"
+         data-widget-id="497527332211421184">Tweets from https://twitter.com/moo64c/lists/news</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?
+          'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+
+        "://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script",
+          "twitter-wjs");</script>
     </div>
   </div>
 </div>

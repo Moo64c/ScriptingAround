@@ -89,11 +89,6 @@ function getFirstPost(url, id) {
   openNews.push(id);
 }
 
-function openInNewWindow(url) {
-  var win = window.open(url, '_blank');
-  win.focus();
-}
-
 function closeInnerContent(id) {
   var container = $("#content-holder-" + id);
   openNews.splice(openNews.indexOf(id), 1);
