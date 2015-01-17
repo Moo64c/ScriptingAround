@@ -36,12 +36,13 @@ var openNews = [];
  * Allow ajax updating of Rotter news.
  */
 function rotterRefresh() {
+  var updatingImage = "style/images/updating" + (Math.floor((Math.random() * 5) + 1)).toString() + ".gif";
   var container = $("#news-container");
   var sorting = $("#sorting-options").val();
   var showTime = $("#show-time").prop("checked");
   // Leave an updating image in the meantime.
   container.hide(500);
-  container.html('<img src="style/images/updating.gif">');
+  container.html('<img class="loading-gif" src="' + updatingImage + '">');
   container.show(250);
 
   var request = $.ajax({
@@ -60,13 +61,14 @@ function rotterRefresh() {
 }
 
 function getFirstPost(url, id) {
+  var updatingImage = "style/images/updating" + (Math.floor((Math.random() * 5) + 1)).toString() + ".gif";
   if (openNews.indexOf(id) != -1 ) {
     closeInnerContent(id);
     return;
   }
   var container = $("#content-holder-" + id);
   // Leave an updating image in the meantime.
-  container.parents(".news-item").append('<img class="loadingGif-'+id+'" src="style/images/updating.gif">');
+  container.parents(".news-item").append('<img class="loading-gif loading-gif-'+id+'" src="' + updatingImage + '">');
 
   var request = $.ajax({
     url: "RotterUpdate.php",
@@ -79,7 +81,7 @@ function getFirstPost(url, id) {
     container.html( msg );
     container.toggleClass("open");
     container.show(400);
-    $(".loadingGif-"+id).hide();
+    $(".loading-gif-"+id).hide();
 
     Shadowbox.setup("a.shadowbox-link");
   });
