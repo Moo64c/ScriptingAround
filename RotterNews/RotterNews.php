@@ -38,8 +38,7 @@ function innerXML($node, $extra_removal = "") {
 function get_update($sorting_method = 'native', $request_url = BASE_URL) {
   $doc = "";
   if (!$doc = get_DOM_from_url($request_url)) {
-    print _get_error_message();
-    return;
+    return _get_error_message();
   }
   $load_time = time();
 
@@ -172,8 +171,7 @@ function get_first_post($url, $id) {
   $new_url = "http://rotter.net/forum/scoops1/$om.shtml";
   $doc = "";
   if (!$doc = get_DOM_from_url($new_url)) {
-    print _get_error_message();
-    return;
+    return _get_error_message();
   }
   // Find the main "div" and work from there.
   $tables_rows = $doc->getElementsByTagName('tr');
@@ -225,8 +223,7 @@ function get_first_post($url, $id) {
         $parent->replaceChild( $shadow_href, $image );
       };
 
-      print innerXML($table_row);
-      break;
+      return innerXML($table_row);
     }
   }
 }
