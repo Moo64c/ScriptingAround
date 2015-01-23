@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- * Code for the rotternews feature.
+ * Code for the Rotternews feature.
  */
 
 include_once 'rotternews.features.inc';

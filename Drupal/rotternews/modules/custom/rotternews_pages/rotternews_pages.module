@@ -1,5 +1,7 @@
 <?php
 /**
  * @file
- * Drupal needs this blank file.
+ * Code for the rotternews_pages feature.
  */
+
+include_once 'rotternews_pages.features.inc';
