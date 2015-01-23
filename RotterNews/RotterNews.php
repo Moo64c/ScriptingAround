@@ -39,7 +39,7 @@ function get_update_data($sorting_method, $request_url) {
   }
 
   if (!$doc = get_DOM_from_url($request_url)) {
-    return _get_error_message();
+    return _get_error_message(0);
   }
   $load_time = time();
 
@@ -201,7 +201,7 @@ function get_first_post($url, $id) {
   $new_url = "http://rotter.net/forum/scoops1/$om.shtml";
 
   if (!$doc = get_DOM_from_url($new_url)) {
-    return _get_error_message();
+    return _get_error_message(0);
   }
   // Find the main "div" and work from there.
   $tables_rows = $doc->getElementsByTagName('tr');
