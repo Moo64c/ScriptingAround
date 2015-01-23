@@ -8,11 +8,10 @@ date_default_timezone_set("Asia/Jerusalem");
 
 /**
  * @param $node
- * @param $extra_removal
  * @return mixed
  * Retrieve full HTML from inside a node.
  */
-function innerXML($node, $extra_removal = "") {
+function innerXML($node) {
   $doc  = $node->ownerDocument;
   $frag = $doc->createDocumentFragment();
   foreach ($node->childNodes as $child)     {
@@ -20,7 +19,6 @@ function innerXML($node, $extra_removal = "") {
   }
 
   $text = $doc->saveXML($frag);
-
   $text = str_replace(array_keys(RotterInfo::$replace_strings), RotterInfo::$replace_strings, $text);
 
   return $text;
@@ -32,11 +30,14 @@ function innerXML($node, $extra_removal = "") {
  *   Sorting method to use.
  * @param $request_url string
  *  Future support for other Rotter forums.
- * @return string
- *  HTML including the actual news.
+ * @return array
+ *  Content received parsed to an array,
  */
-function get_update($sorting_method = 'native', $request_url = BASE_URL) {
-  $doc = "";
+function get_update_data($sorting_method, $request_url) {
+  if ($sorting_method == "") {
+    $sorting_method = RotterInfo::$default_sort;
+  }
+
   if (!$doc = get_DOM_from_url($request_url)) {
     return _get_error_message();
   }
@@ -58,9 +59,10 @@ function get_update($sorting_method = 'native', $request_url = BASE_URL) {
       foreach ($link->attributes as $attribute) {
         if ($attribute->name == 'href') {
           $href = urlencode($attribute->value);
+          $om = _get_post_om($url);
 
           // Change the link clicked to javascript.
-          $attribute->value ='javascript:getFirstPost("' . $href . '",'. $id . ')';
+          $attribute->value ='javascript:getFirstPost("' . $href . '",'. $om . ')';
 
           // Add external link to the original post.
           $external_link = $doc->createElement("a");
@@ -95,13 +97,14 @@ function get_update($sorting_method = 'native', $request_url = BASE_URL) {
       // Add the rows to be printed.
       $local_print .= innerXML($frag);
       $local_print .= '<abbr class="timeago" title="' . gmdate('Y-m-d\TH:i:s\Z', $timestamp) . '"></abbr>';
-      $local_print .= '<div class="news-item" id="news-item-' . $id . '">';
+      $local_print .= '<div class="news-item" id="news-item-' . $om . '">';
       $local_print .= innerXML($link_parent->lastChild->lastChild);
-      $local_print .= '<div class="content-holder" id="content-holder-'. $id . '"></div>';
+      $local_print .= '<div class="content-holder" id="content-holder-'. $om . '"></div>';
       $local_print .= '</div>';
 
       // Add the data with sorting abilities.
       $content[$id] = array(
+        'om' => $om,
         'to_print' => $local_print,
         'views' => $views,
         'comments' => $comments,
@@ -114,13 +117,39 @@ function get_update($sorting_method = 'native', $request_url = BASE_URL) {
     }
   }
 
-  $print = "";
-
   // Sort by whatever.
   if ($sorting_method != 'native') {
     usort($content, "content_sort_$sorting_method");
   }
 
+  return $content;
+}
+
+/**
+ * Request an update from Rotter's scoops forum.
+ * @param $sorting_method string
+ *   Sorting method to use.
+ * @param $request_url string
+ *  Future support for other Rotter forums.
+ * @return string
+ *  Parsed data as a JSON encoded string.
+ */
+function get_update_JSON($sorting_method = "", $request_url = BASE_URL) {
+  return json_encode(get_update_data($sorting_method, $request_url));
+}
+
+/**
+ * Request an update from Rotter's scoops forum.
+ * @param $sorting_method string
+ *   Sorting method to use.
+ * @param $request_url string
+ *  Future support for other Rotter forums.
+ * @return string
+ *  HTML including the actual news.
+ */
+function get_update($sorting_method = "", $request_url = BASE_URL) {
+  $content = get_update_data($sorting_method, $request_url);
+  $print = "";
   // Return the sorted array.
   foreach ($content as $id => $row) {
     $class = $id % 2 == 0 ? "even" : "odd";
@@ -164,12 +193,13 @@ function get_DOM_from_url($request_url) {
  *  Thread URL
  * @param $id
  *  Local ID granted by the main page.
+ * @return string
+ *  Thread's first post as a string.
  */
 function get_first_post($url, $id) {
-  $url_parts = explode("&", $url);
-  $om = str_replace("om=", "", $url_parts[1]);
+  $om = _get_post_om($url);
   $new_url = "http://rotter.net/forum/scoops1/$om.shtml";
-  $doc = "";
+
   if (!$doc = get_DOM_from_url($new_url)) {
     return _get_error_message();
   }
@@ -246,7 +276,28 @@ function _remove_attributes(DOMDocument &$doc, $names) {
   }
 }
 
+/**
+ * Gets an error message.
+ * @param $code integer
+ *  Error code.
+ * @return String
+ *  Error message.
+ */
+function _get_error_message($code) {
+  return RotterInfo::get_error_message($code);
+}
 
-function _get_error_message() {
-  return RotterInfo::get_error_message();
+/**
+ * Gets the Rotter OM of the post.
+ * @param $url
+ *  Post URL.
+ * @return string
+ *  The post's ID.
+ */
+function _get_post_om($url) {
+  $url_parts = explode("&", $url);
+  if (!empty($url_parts[1])) {
+    return  str_replace("om=", "", $url_parts[1]);
+  }
+  return FALSE;
 }

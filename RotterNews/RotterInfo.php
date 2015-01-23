@@ -52,14 +52,24 @@ class RotterInfo {
   );
 
   /**
+   * Gets an error message according to a code.
+   * @param integer
+   *  Error code.
    * @return string
    * Error message when failing to load request.
    */
-  public static function _get_error_message() {
+  public static function _get_error_message($code = 0) {
+    $error_message = "Error retrieving data.";
+    switch ($code) {
+      default:
+        //TODO
+    }
+
+
     return '<div class="news-container odd">
-            <div class="news-item">
-              Error retrieving data.
-            </div>
+            <div class="news-item">' .
+            $error_message .
+            '</div>
           </div>';
   }
 };
