@@ -49,6 +49,7 @@ class RotterInfo {
     '</td>' => '',
     '<table>' => "",
     '</table>' => '',
+    'size=' => '',
   );
 
   /**
