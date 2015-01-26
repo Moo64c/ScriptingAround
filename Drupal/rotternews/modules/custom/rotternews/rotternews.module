@@ -5,3 +5,12 @@
  */
 
 include_once 'rotternews.features.inc';
+
+
+/**
+ * Import news items from Rotter.net.
+ */
+function rottersnews_get_update() {
+  // Get JSON data.
+  $data = rotternews_get_update_JSON();
+}

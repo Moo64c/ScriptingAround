@@ -30,6 +30,9 @@ projects[entityreference_prepopulate][patch][] = "https://drupal.org/files/issue
 projects[features][subdir] = "contrib"
 projects[features][version] = "2.2"
 
+projects[feeds][subdir] = "contrib"
+projects[feeds][version] = "2.x-dev"
+
 projects[field_collection][subdir] = "contrib"
 projects[field_collection][version] = "1.0-beta5"
 

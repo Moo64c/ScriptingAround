@@ -11,7 +11,7 @@ date_default_timezone_set("Asia/Jerusalem");
  * @return mixed
  * Retrieve full HTML from inside a node.
  */
-function innerXML($node) {
+function rotternews_innerXML($node) {
   $doc  = $node->ownerDocument;
   $frag = $doc->createDocumentFragment();
   foreach ($node->childNodes as $child)     {
@@ -33,13 +33,13 @@ function innerXML($node) {
  * @return array
  *  Content received parsed to an array,
  */
-function get_update_data($sorting_method, $request_url) {
+function rotternews_get_update_data($sorting_method, $request_url) {
   if ($sorting_method == "") {
     $sorting_method = RotterInfo::$default_sort;
   }
 
-  if (!$doc = get_DOM_from_url($request_url)) {
-    return _get_error_message(0);
+  if (!$doc = rotternews_get_DOM_from_url($request_url)) {
+    return _rotternews_get_error_message(0);
   }
   $load_time = time();
 
@@ -59,7 +59,7 @@ function get_update_data($sorting_method, $request_url) {
       foreach ($link->attributes as $attribute) {
         if ($attribute->name == 'href') {
           $href = urlencode($attribute->value);
-          $om = _get_post_om($url);
+          $om = _rotternews_get_post_om($url);
 
           // Change the link clicked to javascript.
           $attribute->value ='javascript:getFirstPost("' . $href . '",'. $om . ')';
@@ -95,10 +95,10 @@ function get_update_data($sorting_method, $request_url) {
       $views = intval($views) == 0 ? 1 : intval($views);
 
       // Add the rows to be printed.
-      $local_print .= innerXML($frag);
+      $local_print .= rotternews_innerXML($frag);
       $local_print .= '<abbr class="timeago" title="' . gmdate('Y-m-d\TH:i:s\Z', $timestamp) . '"></abbr>';
       $local_print .= '<div class="news-item" id="news-item-' . $om . '">';
-      $local_print .= innerXML($link_parent->lastChild->lastChild);
+      $local_print .= rotternews_innerXML($link_parent->lastChild->lastChild);
       $local_print .= '<div class="content-holder" id="content-holder-'. $om . '"></div>';
       $local_print .= '</div>';
 
@@ -134,8 +134,8 @@ function get_update_data($sorting_method, $request_url) {
  * @return string
  *  Parsed data as a JSON encoded string.
  */
-function get_update_JSON($sorting_method = "", $request_url = BASE_URL) {
-  return json_encode(get_update_data($sorting_method, $request_url));
+function rotternews_get_update_JSON($sorting_method = "", $request_url = BASE_URL) {
+  return json_encode(rotternews_get_update_data($sorting_method, $request_url));
 }
 
 /**
@@ -147,8 +147,8 @@ function get_update_JSON($sorting_method = "", $request_url = BASE_URL) {
  * @return string
  *  HTML including the actual news.
  */
-function get_update($sorting_method = "", $request_url = BASE_URL) {
-  $content = get_update_data($sorting_method, $request_url);
+function rotternews_get_update($sorting_method = "", $request_url = BASE_URL) {
+  $content = rotternews_get_update_data($sorting_method, $request_url);
   $print = "";
   // Return the sorted array.
   foreach ($content as $id => $row) {
@@ -166,7 +166,7 @@ function get_update($sorting_method = "", $request_url = BASE_URL) {
  * @param $request_url
  * @return DOMDocument
  */
-function get_DOM_from_url($request_url) {
+function rotternews_get_DOM_from_url($request_url) {
   $curl = curl_init();
   curl_setopt($curl, CURLOPT_FOLLOWLOCATION, TRUE);
   curl_setopt($curl, CURLOPT_URL, $request_url);
@@ -196,12 +196,12 @@ function get_DOM_from_url($request_url) {
  * @return string
  *  Thread's first post as a string.
  */
-function get_first_post($url, $id) {
-  $om = _get_post_om($url);
+function rotternews_get_first_post($url, $id) {
+  $om = _rotternews_get_post_om($url);
   $new_url = "http://rotter.net/forum/scoops1/$om.shtml";
 
-  if (!$doc = get_DOM_from_url($new_url)) {
-    return _get_error_message(0);
+  if (!$doc = rotternews_get_DOM_from_url($new_url)) {
+    return _rotternews_get_error_message(0);
   }
   // Find the main "div" and work from there.
   $tables_rows = $doc->getElementsByTagName('tr');
@@ -210,7 +210,7 @@ function get_first_post($url, $id) {
     if ($table_row->attributes->getNamedItem("bgcolor")->nodeValue == "#FDFDFD" ) {
 
       // Remove attributes for "font" and "td" elements.
-      _remove_attributes($doc, array("font", "td", "table"));
+      _rotternews_remove_attributes($doc, array("font", "td", "table"));
 
       // Remove scripts.
       foreach($doc->getElementsByTagName('script') as $script) {
@@ -253,7 +253,7 @@ function get_first_post($url, $id) {
         $parent->replaceChild( $shadow_href, $image );
       };
 
-      return innerXML($table_row);
+      return rotternews_innerXML($table_row);
     }
   }
 }
@@ -265,7 +265,7 @@ function get_first_post($url, $id) {
  * @param $names array
  *   Array of strings to search for.
  */
-function _remove_attributes(DOMDocument &$doc, $names) {
+function _rotternews_remove_attributes(DOMDocument &$doc, $names) {
   foreach ($names as $name) {
     foreach($doc->getElementsByTagName($name) as $element) {
       $attributes = $element->attributes;
@@ -283,7 +283,7 @@ function _remove_attributes(DOMDocument &$doc, $names) {
  * @return String
  *  Error message.
  */
-function _get_error_message($code) {
+function _rotternews_get_error_message($code) {
   return RotterInfo::get_error_message($code);
 }
 
@@ -294,7 +294,7 @@ function _get_error_message($code) {
  * @return string
  *  The post's ID.
  */
-function _get_post_om($url) {
+function _rotternews_get_post_om($url) {
   $url_parts = explode("&", $url);
   if (!empty($url_parts[1])) {
     return  str_replace("om=", "", $url_parts[1]);
