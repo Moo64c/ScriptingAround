@@ -64,17 +64,23 @@ function rotternews_get_update_data($sorting_method, $request_url) {
           // Change the link clicked to javascript.
           $attribute->value ='javascript:getFirstPost("' . $href . '",'. $om . ')';
 
+          $frag = $doc->createDocumentFragment();
           // Add external link to the original post.
-          $external_link = $doc->createElement("a");
 
           $external_link_image = $doc->createElement('img');
           $external_link_image->setAttribute('src', 'style/images/external.png');
           $external_link_image->setAttribute('class', 'external-image');
+
+          $external_link = $doc->createElement("a");
           $external_link->appendChild($external_link_image);
           $external_link->setAttribute("href", urldecode($href));
           $external_link->setAttribute("target", "_blank");
-          $frag = $doc->createDocumentFragment();
           $frag->appendChild($external_link->cloneNode(TRUE));
+
+          $original_link = $doc->createElement("a");
+          $original_link->appendChild($doc->createTextNode($link->textContent));
+          $original_link->setAttribute('href', 'javascript:getFirstPost("' . $href . '",'. $om . ')');
+          $frag->appendChild($original_link->cloneNode(TRUE));
         }
       }
       $link_parent = $link->parentNode->parentNode->parentNode;
@@ -95,10 +101,9 @@ function rotternews_get_update_data($sorting_method, $request_url) {
       $views = intval($views) == 0 ? 1 : intval($views);
 
       // Add the rows to be printed.
-      $local_print .= rotternews_innerXML($frag);
       $local_print .= '<abbr class="timeago" title="' . gmdate('Y-m-d\TH:i:s\Z', $timestamp) . '"></abbr>';
       $local_print .= '<div class="news-item" id="news-item-' . $om . '">';
-      $local_print .= rotternews_innerXML($link_parent->lastChild->lastChild);
+      $local_print .= rotternews_innerXML($frag);
       $local_print .= '<div class="content-holder" id="content-holder-'. $om . '"></div>';
       $local_print .= '</div>';
 
