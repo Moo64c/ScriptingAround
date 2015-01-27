@@ -40,6 +40,7 @@ function rotterRefresh() {
   var container = $("#news-container");
   var sorting = $("#sorting-options").val();
   var showTime = $("#show-time").prop("checked");
+  $("#search").val("");
   // Leave an updating image in the meantime.
   container.hide(500);
   container.html('<img class="loading-gif" src="' + updatingImage + '">');
@@ -103,7 +104,7 @@ function closeInnerContent(id) {
 }
 
 function applySearch(str) {
-  var searchBar =$("#search");
+  var searchBar = $("#search");
   searchBar.val(str);
   searchBar.trigger('change');
 }
