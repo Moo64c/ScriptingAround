@@ -49,7 +49,10 @@ function rotterRefresh() {
     url: "RotterUpdate.php",
     type: "POST",
     data: { sorting_method: sorting },
-    dataType: "html"
+    dataType: "html",
+    error: function(data) {
+      rotterRefresh();
+    }
   });
 
   request.done(function( msg ) {
@@ -74,7 +77,10 @@ function getFirstPost(url, id) {
     url: "RotterUpdate.php",
     type: "POST",
     data: { firstPost: 1, url : url, id: id },
-    dataType: "html"
+    dataType: "html",
+    error: function(data, url, id) {
+      getFirstPost(url,id);
+    }
   });
 
   request.done(function( msg ) {
@@ -94,4 +100,10 @@ function closeInnerContent(id) {
   openNews.splice(openNews.indexOf(id), 1);
   container.hide(400);
   container.toggleClass("open");
+}
+
+function applySearch(str) {
+  var searchBar =$("#search");
+  searchBar.val(str);
+  searchBar.trigger('change');
 }

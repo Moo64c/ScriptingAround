@@ -1,6 +1,7 @@
 <?php
 require_once("RotterInfo.php");
 require_once("RotterSort.php");
+require_once("RotterCloud.php");
 
 $version = RotterInfo::$version;
 define("BASE_URL", RotterInfo::$base_url);
@@ -51,6 +52,7 @@ function rotternews_get_update_data($sorting_method, $request_url) {
     $link = $links->item($i);
     $url =  $link->attributes->getNamedItem("href")->textContent;
     $local_print = "";
+    $title = "";
 
     if (strpos($url, 'forum=scoops1') && strpos($url, 'az=read_count') && !strpos($url, "mm=") ) {
 
@@ -78,7 +80,8 @@ function rotternews_get_update_data($sorting_method, $request_url) {
           $frag->appendChild($external_link->cloneNode(TRUE));
 
           $original_link = $doc->createElement("a");
-          $original_link->appendChild($doc->createTextNode($link->textContent));
+          $title = $link->textContent;
+          $original_link->appendChild($doc->createTextNode($title));
           $original_link->setAttribute('href', 'javascript:getFirstPost("' . $href . '",'. $om . ')');
           $frag->appendChild($original_link->cloneNode(TRUE));
         }
@@ -110,6 +113,7 @@ function rotternews_get_update_data($sorting_method, $request_url) {
       // Add the data with sorting abilities.
       $content[$id] = array(
         'om' => $om,
+        'title' => $title,
         'to_print' => $local_print,
         'views' => $views,
         'comments' => $comments,
@@ -153,17 +157,21 @@ function rotternews_get_update_JSON($sorting_method = "", $request_url = BASE_UR
  *  HTML including the actual news.
  */
 function rotternews_get_update($sorting_method = "", $request_url = BASE_URL) {
-  $content = rotternews_get_update_data($sorting_method, $request_url);
-  $print = "";
   // Return the sorted array.
+  $content = rotternews_get_update_data($sorting_method, $request_url);
+
+  $print_to_add = "";
+  $cloud_text = "";
   foreach ($content as $id => $row) {
     $class = $id % 2 == 0 ? "even" : "odd";
-    $print .= '<div class="news-item-wrapper '. $class . '">';
-    $print .= $row['to_print'];
-    $print .= '</div>';
+    $print_to_add .= '<div class="news-item-wrapper '. $class . '">';
+    $print_to_add .= $row['to_print'];
+    $print_to_add .= '</div>';
+    $cloud_text .= $row['title'] . " ";
   }
 
-  return $print;
+  $cloud = rotternews_get_tag_cloud($cloud_text);
+  return $cloud . $print_to_add;
 }
 
 /**

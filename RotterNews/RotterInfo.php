@@ -12,9 +12,20 @@
  */
 class RotterInfo {
 
-  public static $version = "0.42";
+  public static $version = "0.43";
   public static $base_url = "http://rotter.net/scoopscache.html";
   public static $default_sort = "time";
+
+  public static $search_words = array(
+    'צהל' => 'צה',
+  );
+
+  public static $tag_filter = array(
+    'של', 'עכשיו', 'על', 'לא', 'את', 'זה', 'כי', 'נגד', 'עד', 'עם', 'עקב', 'פרסום',
+  );
+  public static $tag_clean_chars = array(
+    '"', "'", ':', '.', '(', ')', ",", "-", "\t", "\n",
+  );
 
   public static $image_removal_hints = array(
     "avatar",
@@ -32,6 +43,7 @@ class RotterInfo {
     "animated-gifs.",
     "emoticons",
     "al-magor.com/wp-content/uploads/2012/08/rifle_sight-150x150.jpg",
+    "pinchas.net",
   );
 
   // Cleanup strings.
