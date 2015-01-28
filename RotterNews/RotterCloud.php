@@ -26,10 +26,10 @@ function rotternews_get_tag_cloud($text) {
   /* This word cloud generation algorithm was taken from the Wikipedia page on "word cloud"
      with some minor modifications to the implementation */
 
-  $font_max = 16;
-  $font_min = 6;
+  $font_max = 26;
+  $font_min = 10;
   $frequency_min = 2;
-  $frequency_max = 100; /* Frequency upper-bound */
+  $frequency_max = 200; /* Frequency upper-bound */
 
   foreach ($words_frequency as $word => $frequency) {
     if ($frequency >= $frequency_min) {

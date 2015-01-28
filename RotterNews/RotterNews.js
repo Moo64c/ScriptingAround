@@ -57,6 +57,7 @@ function rotterRefresh() {
   });
 
   request.done(function( msg ) {
+    console.log(msg);
     container.html( msg );
     if (showTime) {
       jQuery("abbr.timeago").timeago();
