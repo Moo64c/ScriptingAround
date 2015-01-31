@@ -59,9 +59,9 @@ function rotternews_filter_tags($words) {
 
   foreach ($words as $pos => $word) {
     trim($word);
-    if (!in_array(strtolower($word), RotterInfo::$tag_filter, TRUE)
-        && !is_numeric($word) && !empty($word)) {
-      $filtered_words[$pos] = iconv("ISO-8859-8", "UTF-8", (iconv("UTF-8", "ISO-8859-8", $word)));
+    if (!in_array(mb_strtolower($word, RotterInfo::$encoding), RotterInfo::$tag_filter, TRUE)
+        && !is_numeric($word) && !empty($word) && mb_strlen($word, RotterInfo::$encoding) > 1) {
+      $filtered_words[$pos] = $word;
     }
   }
 
@@ -79,7 +79,7 @@ function rotternews_word_frequency($words) {
   $frequency_list = array();
   foreach ($words as $pos => $word) {
 
-    $word = strtolower($word);
+    $word = mb_strtolower($word, RotterInfo::$encoding);
     if (array_key_exists($word, $frequency_list)) {
       ++$frequency_list[$word];
     }

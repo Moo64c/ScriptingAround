@@ -11,7 +11,7 @@
  * Hold information for rotter news.
  */
 class RotterInfo {
-
+  public static $encoding ='UTF-8';
   public static $version = "0.43";
   public static $base_url = "http://rotter.net/scoopscache.html";
   public static $default_sort = "time";
@@ -21,7 +21,7 @@ class RotterInfo {
   );
 
   public static $tag_filter = array(
-    'של', 'עכשיו', 'על', 'לא', 'את', 'זה', 'כי', 'נגד', 'עד', 'עם', 'עקב', 'פרסום', 'יש', 'בן',
+    'של', 'עכשיו', 'על', 'לא', 'את', 'זה', 'כי', 'נגד', 'עד', 'עם', 'עקב', 'פרסום', 'יש', 'בן', 'כדי', '\\\\', '//',
   );
   public static $tag_clean_chars = array(
     '"', "'", ':', '.', '(', ')', ",", "-", "\t", "\n",
@@ -31,6 +31,8 @@ class RotterInfo {
     "avatar",
     "customavatars",
     "images/avatars/",
+    "icon",
+    "emoticons",
     "signatures",
     "customprofilepics",
     "images/spacer.gif",
@@ -41,9 +43,9 @@ class RotterInfo {
     "imgur.com/9wkXNzq.png",
     "rotter.net/forum/Images/oranis/set1_14.gif",
     "animated-gifs.",
-    "emoticons",
     "al-magor.com/wp-content/uploads/2012/08/rifle_sight-150x150.jpg",
     "pinchas.net",
+    "tinypic.com/2mo9eag.jpg",
   );
 
   // Cleanup strings.
