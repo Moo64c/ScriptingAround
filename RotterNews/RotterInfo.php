@@ -17,14 +17,14 @@ class RotterInfo {
   public static $default_sort = "time";
 
   public static $search_words = array(
-    'צהל' => 'צה',
+
   );
 
   public static $tag_filter = array(
-    'של', 'עכשיו', 'על', 'לא', 'את', 'זה', 'כי', 'נגד', 'עד', 'עם', 'עקב', 'פרסום', 'יש', 'בן', 'כדי', '\\\\', '//',
+    'של', 'עכשיו', 'על', 'לא', 'את', 'זה', 'כי', 'נגד', 'עד', 'עם', 'עקב', 'פרסום', 'יש', 'בן', 'כדי',
   );
   public static $tag_clean_chars = array(
-    '"', "'", ':', '.', '(', ')', ",", "-", "\t", "\n",
+    ':', '.', '(', ')', ",", "-", "\t", "\n", "\\", "/",
   );
 
   public static $image_removal_hints = array(
