@@ -9,7 +9,7 @@ $(document).ready(function() {
   $('#search').on('change keyup paste', function() {
     var searchString = $('#search').val();
     $("div.news-item-wrapper:not(:contains(" + searchString + "))").hide();
-    $("div.news-item-wrapper:contains('" + searchString + "')").show();
+    $("div.news-item-wrapper:contains(" + searchString + ")").show();
   });
 
   rotterRefresh();
