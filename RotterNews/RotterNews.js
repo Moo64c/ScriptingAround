@@ -8,6 +8,9 @@ $(document).ready(function() {
 
   $('#search').on('change keyup paste', function() {
     var searchString = $('#search').val();
+
+    searchString = searchString.replace(/"/g, "\'") ;
+
     $("div.news-item-wrapper:not(:contains(" + searchString + "))").hide();
     $("div.news-item-wrapper:contains(" + searchString + ")").show();
   });
@@ -57,7 +60,6 @@ function rotterRefresh() {
   });
 
   request.done(function( msg ) {
-    console.log(msg);
     container.html( msg );
     if (showTime) {
       jQuery("abbr.timeago").timeago();
