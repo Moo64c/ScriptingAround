@@ -5,6 +5,7 @@
  */
 
 include_once 'rotternews_base.features.inc';
+module_load_include('inc', 'rotternews_base', '/include');
 
 /**
  * Import news items from Rotter.net.
@@ -12,5 +13,5 @@ include_once 'rotternews_base.features.inc';
 function rotternews_base_get_update() {
   // Get JSON data.
   $data = rotternews_get_update_JSON();
-  dpm($data);
+  dpm("foooo");
 }

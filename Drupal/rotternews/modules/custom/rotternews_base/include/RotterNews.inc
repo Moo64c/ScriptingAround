@@ -1,7 +1,7 @@
 <?php
-require_once("RotterInfo.php");
-require_once("RotterSort.php");
-require_once("RotterCloud.php");
+require_once("RotterInfo.inc");
+require_once("RotterSort.inc");
+require_once("RotterCloud.inc");
 
 $version = RotterInfo::$version;
 define("ROTTER_REQUEST_BASE_URL", RotterInfo::$base_url);
