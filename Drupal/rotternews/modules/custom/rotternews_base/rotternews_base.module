@@ -11,11 +11,11 @@ require_once 'include/RotterNews.inc';
  * Import news items from Rotter.net.
  */
 function rotternews_base_get_update() {
-  // Get JSON data.
+  // Get data.
   $data = rotternews_get_update_data();
   $data_by_om = array();
   $new_node_ids = array();
-  
+
   foreach($data as $data_row) {
     if (!empty($data_row['om'])) {
       $data_by_om[$data_row['om']] = intval($data_row['om']);
@@ -58,7 +58,7 @@ function rotternews_base_create_article($data = array()) {
   $wrapper->field_rotter_id->set(intval($data['om']));
   $wrapper->field_views->set($data['views']);
   $wrapper->field_comments->set($data['comments']);
-//  $wrapper->save();
+  $wrapper->save();
 
   return $wrapper->value();
 }

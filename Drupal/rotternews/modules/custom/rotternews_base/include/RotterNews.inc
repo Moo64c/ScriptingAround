@@ -179,6 +179,7 @@ function rotternews_get_update($sorting_method = "", $request_url = ROTTER_REQUE
  * @return DOMDocument
  */
 function rotternews_get_DOM_from_url($request_url) {
+  libxml_use_internal_errors(true);
   $curl = curl_init();
   curl_setopt($curl, CURLOPT_FOLLOWLOCATION, TRUE);
   curl_setopt($curl, CURLOPT_URL, $request_url);
@@ -196,6 +197,7 @@ function rotternews_get_DOM_from_url($request_url) {
   $html_base = new DOMDocument();
   // Load HTML from a string.
   $html_base->loadHTML($str);
+  libxml_clear_errors();
   return $html_base;
 }
 
