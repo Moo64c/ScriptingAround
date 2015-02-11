@@ -1,6 +1,6 @@
-name = rotternews_pages
+name = Rotternews pages
 core = 7.x
-package = Features
+package = Rotter
 version = 7.x-1.0
 project = rotternews_pages
 dependencies[] = ctools

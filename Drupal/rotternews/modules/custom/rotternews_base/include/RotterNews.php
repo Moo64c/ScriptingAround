@@ -34,7 +34,7 @@ function rotternews_innerXML($node) {
  * @return array
  *  Content received parsed to an array,
  */
-function rotternews_get_update_data($sorting_method, $request_url) {
+function rotternews_get_update_data($sorting_method = "", $request_url = ROTTER_REQUEST_BASE_URL) {
   if ($sorting_method == "") {
     $sorting_method = RotterInfo::$default_sort;
   }

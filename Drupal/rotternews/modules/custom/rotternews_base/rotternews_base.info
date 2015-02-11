@@ -1,8 +1,8 @@
-name = Rotternews
+name = Rotternews Base
 core = 7.x
-package = Features
+package = Rotter
 version = 7.x-1.0
-project = rotternews
+project = rotternews_base
 dependencies[] = ctools
 dependencies[] = page_manager
 features[ctools][] = page_manager:pages_default:1
@@ -12,3 +12,4 @@ features[page_manager_pages][] = home
 files[] = include/RotterInfo.php
 files[] = include/RotterSort.php
 files[] = include/RotterNews.php
+files[] = include/RotterCloud.php
