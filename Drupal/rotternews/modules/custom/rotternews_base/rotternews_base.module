@@ -6,6 +6,7 @@
 
 include_once 'rotternews_base.features.inc';
 require_once 'include/RotterNews.inc';
+
 /**
  * Import news items from Rotter.net.
  */
@@ -13,6 +14,8 @@ function rotternews_base_get_update() {
   // Get JSON data.
   $data = rotternews_get_update_data();
   $data_by_om = array();
+  $new_node_ids = array();
+  
   foreach($data as $data_row) {
     if (!empty($data_row['om'])) {
       $data_by_om[$data_row['om']] = intval($data_row['om']);
@@ -20,7 +23,6 @@ function rotternews_base_get_update() {
   }
   // Load candidates to cache memory.
   $old_nodes = rotternews_base_get_nodes($data_by_om);
-  $new_node_ids = array();
   foreach($data as $article_data) {
     if (!$node = rotternews_base_update_article($article_data, $old_nodes)) {
       // Create a new node.
@@ -30,11 +32,15 @@ function rotternews_base_get_update() {
     $new_node_ids[] = $node->nid;
   }
 
+  // Set this for the next round of update.
   variable_set('rotternews_last_nodes', $new_node_ids);
 }
 
 /**
+ * Create an article from given data.
  * @param array $data
+ * @return object
+ *  Created node.
  */
 function rotternews_base_create_article($data = array()) {
   $node = new stdClass();
@@ -58,20 +64,23 @@ function rotternews_base_create_article($data = array()) {
 }
 
 /**
- * @param array $data
- * @param array $old_nodes_by_om
- * @throws EntityMetadataWrapperException
+ * Update a node with given data.
+ *
+*@param array $data
+ *  Data to update with.
+ * @param array $nodes_by_om
+ *  Possible nodes that could be replaced (key is om).
+ * @return object/NULL
+ *  NULL on fail, node object if successful.
  */
-function rotternews_base_update_article($data = array(), $old_nodes_by_om  = array()) {
+function rotternews_base_update_article($data = array(), $nodes_by_om  = array()) {
   if (empty($data['om'])) {
     return;
   }
 
   $node = NULL;
-  if (empty($old_nodes_by_om[$data['om']])) {
-  }
-  else {
-    $node = $old_nodes_by_om[$data['om']];
+  if (!empty($nodes_by_om[$data['om']])) {
+    $node = $nodes_by_om[$data['om']];
   }
 
   if (empty($node)) {
@@ -89,6 +98,10 @@ function rotternews_base_update_article($data = array(), $old_nodes_by_om  = arr
 
 /**
  * Gets the latest nodes IDs that were created to cache them.
+ * @param $rotter_ids array
+ *  Array of the current rotter OMs that were parsed.
+ * @return array
+ *  Array of found, possibly relevant nodes.
  */
 function rotternews_base_get_nodes($rotter_ids) {
   $query = new EntityFieldQuery();
