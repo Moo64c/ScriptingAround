@@ -99,8 +99,9 @@ function rotternews_get_update_data($sorting_method, $request_url) {
 
       $timestamp = strtotime("$date $time");
 
-      $comments =  $link_parent->nextSibling->nextSibling->nextSibling->nextSibling->nextSibling->nextSibling->textContent;
-      $views = $link_parent->nextSibling->nextSibling->nextSibling->nextSibling->nextSibling->nextSibling->nextSibling->nextSibling->textContent;
+      $comments = $link_parent->nextSibling->nextSibling->nextSibling->nextSibling->textContent;
+      $views = $link_parent->nextSibling->nextSibling->nextSibling->nextSibling->nextSibling->nextSibling->firstChild->nextSibling->firstChild->textContent;
+      $views = intval($views) == 0 ? 1 : intval($views);
 
       // Add the rows to be printed.
       $local_print .= '<abbr class="timeago" title="' . gmdate('Y-m-d\TH:i:s\Z', $timestamp) . '"></abbr>';

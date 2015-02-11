@@ -53,6 +53,7 @@ function rotternews_get_update_data($sorting_method = "", $request_url = ROTTER_
     $url =  $link->attributes->getNamedItem("href")->textContent;
     $local_print = "";
     $title = "";
+    $href = "";
 
     if (strpos($url, 'forum=scoops1') && strpos($url, 'az=read_count') && !strpos($url, "mm=") ) {
 
@@ -119,6 +120,7 @@ function rotternews_get_update_data($sorting_method = "", $request_url = ROTTER_
         'native_id' => $id,
         'timestamp' => $timestamp,
         'time_passed' => $load_time - $timestamp,
+        'href' => $url,
       );
 
       $id++;
@@ -221,7 +223,8 @@ function rotternews_get_first_post($url, $id) {
   $tables_rows = $doc->getElementsByTagName('tr');
   for($i = 0; $i < $tables_rows->length; $i++) {
     $table_row = $tables_rows->item($i);
-    if ($table_row->attributes->getNamedItem("bgcolor")->nodeValue == "#FDFDFD" ) {
+    if (!empty($table_row->attributes->getNamedItem("bgcolor")->nodeValue) &&
+      $table_row->attributes->getNamedItem("bgcolor")->nodeValue == "#FDFDFD" ) {
 
       // Remove attributes for "font" and "td" elements.
       _rotternews_remove_attributes($doc, array("font", "td", "table"));
@@ -237,7 +240,12 @@ function rotternews_get_first_post($url, $id) {
         $parse = parse_url($link->nodeValue);
 
         // Change links' text to just their domain. (Prevents box size messes).
-        $link->nodeValue = $parse['host'];
+        if (!empty($parse['host'])) {
+          $link->nodeValue = $parse['host'];
+        }
+        else {
+          $link->nodeValue = "";
+        }
       }
 
       // Add link for shadowbox before each image.

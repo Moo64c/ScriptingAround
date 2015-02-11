@@ -10,7 +10,7 @@
  */
 function rotternews_base_drush_help($section) {
   switch ($section) {
-    case 'drush:rotternews_update_data':
+    case 'drush:rotternews_base_update_data':
       return dt('Update Rotter news.');
   }
 }

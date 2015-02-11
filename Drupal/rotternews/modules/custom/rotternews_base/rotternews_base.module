@@ -56,11 +56,8 @@ function rotternews_base_create_article($data = array()) {
 
   $wrapper = entity_metadata_wrapper('node', $node);
   $wrapper->field_rotter_id->set(intval($data['om']));
-  $wrapper->field_views->set($data['views']);
-  $wrapper->field_comments->set($data['comments']);
-  $wrapper->save();
 
-  return $wrapper->value();
+  return _rotternews_base_save_node($wrapper->value(), $data);
 }
 
 /**
@@ -86,14 +83,7 @@ function rotternews_base_update_article($data = array(), $nodes_by_om  = array()
   if (empty($node)) {
     return;
   }
-
-  $wrapper = entity_metadata_wrapper('node', $node);
-  $wrapper->field_views->set($data['views']);
-  $wrapper->field_comments->set($data['comments']);
-  $wrapper->title->set($data['title']);
-  $wrapper->save();
-
-  return $wrapper->value();
+  return _rotternews_base_save_node($node, $data, FALSE);
 }
 
 /**
@@ -128,3 +118,25 @@ function rotternews_base_get_nodes($rotter_ids) {
   return $nodes_by_om;
 }
 
+function _rotternews_base_save_node($node, $data, $get_first_post = TRUE) {
+  $wrapper = entity_metadata_wrapper('node', $node);
+  $wrapper->title->set($data['title']);
+  $wrapper->field_views->set($data['views']);
+  $wrapper->field_comments->set($data['comments']);
+
+  if ($get_first_post) {
+    $post_data = rotternews_get_first_post($data['href'], 0);
+
+    $wrapper->body->set(
+      array(
+        'value' => $post_data,
+        'summary' => '',
+        'format' => 'no_filter',
+      )
+    );
+  }
+
+  $wrapper->save();
+
+  return $wrapper->value();
+}
