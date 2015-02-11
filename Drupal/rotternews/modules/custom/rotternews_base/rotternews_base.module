@@ -11,5 +11,6 @@ require_once 'include/RotterNews.inc';
  */
 function rotternews_base_get_update() {
   // Get JSON data.
-  $data = rotternews_get_update_JSON();
+  $data = rotternews_get_update_data();
+  dpm($data);
 }
