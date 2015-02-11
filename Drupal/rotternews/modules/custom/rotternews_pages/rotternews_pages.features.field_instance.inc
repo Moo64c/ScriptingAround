@@ -54,8 +54,8 @@ function rotternews_pages_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-news_item-field_raw_html'
-  $field_instances['node-news_item-field_raw_html'] = array(
+  // Exported field_instance: 'node-news_item-field_comments'
+  $field_instances['node-news_item-field_comments'] = array(
     'bundle' => 'news_item',
     'default_value' => NULL,
     'deleted' => 0,
@@ -66,7 +66,7 @@ function rotternews_pages_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 3,
+        'weight' => 5,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -76,8 +76,8 @@ function rotternews_pages_field_default_field_instances() {
       ),
     ),
     'entity_type' => 'node',
-    'field_name' => 'field_raw_html',
-    'label' => 'Raw HTML',
+    'field_name' => 'field_comments',
+    'label' => 'comments',
     'required' => 0,
     'settings' => array(
       'text_processing' => 0,
@@ -87,10 +87,10 @@ function rotternews_pages_field_default_field_instances() {
       'active' => 1,
       'module' => 'text',
       'settings' => array(
-        'rows' => 300,
+        'size' => 60,
       ),
-      'type' => 'text_textarea',
-      'weight' => 34,
+      'type' => 'text_textfield',
+      'weight' => 5,
     ),
   );
 
@@ -231,10 +231,10 @@ function rotternews_pages_field_default_field_instances() {
   // Translatables
   // Included for use with string extractors like potx.
   t('Body');
-  t('Raw HTML');
   t('Reporter');
   t('Rotter ID');
   t('Views');
+  t('comments');
 
   return $field_instances;
 }
