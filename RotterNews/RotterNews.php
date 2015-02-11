@@ -98,7 +98,7 @@ function rotternews_get_update_data($sorting_method, $request_url) {
       $time = $time->firstChild->nextSibling->textContent;
 
       $timestamp = strtotime("$date $time");
-      
+
       $comments =  $link_parent->nextSibling->nextSibling->nextSibling->nextSibling->nextSibling->nextSibling->textContent;
       $views = $link_parent->nextSibling->nextSibling->nextSibling->nextSibling->nextSibling->nextSibling->nextSibling->nextSibling->textContent;
 

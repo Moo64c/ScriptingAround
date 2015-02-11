@@ -12,5 +12,106 @@ require_once 'include/RotterNews.inc';
 function rotternews_base_get_update() {
   // Get JSON data.
   $data = rotternews_get_update_data();
-  dpm($data);
+  $data_by_om = array();
+  foreach($data as $data_row) {
+    if (!empty($data_row['om'])) {
+      $data_by_om[$data_row['om']] = intval($data_row['om']);
+    }
+  }
+  // Load candidates to cache memory.
+  $old_nodes = rotternews_base_get_nodes($data_by_om);
+  $new_node_ids = array();
+  foreach($data as $article_data) {
+    if (!$node = rotternews_base_update_article($article_data, $old_nodes)) {
+      // Create a new node.
+      $node = rotternews_base_create_article($article_data);
+    }
+
+    $new_node_ids[] = $node->nid;
+  }
+
+  variable_set('rotternews_last_nodes', $new_node_ids);
 }
+
+/**
+ * @param array $data
+ */
+function rotternews_base_create_article($data = array()) {
+  $node = new stdClass();
+  $node->title = $data['title'];
+  $node->type = "news_item";
+  // Sets some defaults. Invokes hook_prepare() and hook_node_prepare().
+  node_object_prepare($node);
+  $node->language = LANGUAGE_NONE;
+  $node->uid = 1;
+  $node->status = 1;
+  $node->promote = 0;
+  $node->created = $data['timestamp'];
+
+  $wrapper = entity_metadata_wrapper('node', $node);
+  $wrapper->field_rotter_id->set(intval($data['om']));
+  $wrapper->field_views->set($data['views']);
+  $wrapper->field_comments->set($data['comments']);
+//  $wrapper->save();
+
+  return $wrapper->value();
+}
+
+/**
+ * @param array $data
+ * @param array $old_nodes_by_om
+ * @throws EntityMetadataWrapperException
+ */
+function rotternews_base_update_article($data = array(), $old_nodes_by_om  = array()) {
+  if (empty($data['om'])) {
+    return;
+  }
+
+  $node = NULL;
+  if (empty($old_nodes_by_om[$data['om']])) {
+  }
+  else {
+    $node = $old_nodes_by_om[$data['om']];
+  }
+
+  if (empty($node)) {
+    return;
+  }
+
+  $wrapper = entity_metadata_wrapper('node', $node);
+  $wrapper->field_views->set($data['views']);
+  $wrapper->field_comments->set($data['comments']);
+  $wrapper->title->set($data['title']);
+  $wrapper->save();
+
+  return $wrapper->value();
+}
+
+/**
+ * Gets the latest nodes IDs that were created to cache them.
+ */
+function rotternews_base_get_nodes($rotter_ids) {
+  $query = new EntityFieldQuery();
+  $result = $query
+    ->entityCondition('entity_type', 'node')
+    ->propertyCondition('type', 'news_item', '=')
+    ->fieldCondition('field_rotter_id', 'value', $rotter_ids, 'IN')
+    ->execute();
+
+  $node_ids = array();
+  if (!empty($result['node'])) {
+    $node_ids += array_keys($result['node']);
+  }
+  $node_ids += variable_get('rotternews_last_nodes', array());
+
+  $nodes = node_load_multiple($node_ids);
+
+  $nodes_by_om = array();
+  foreach ($nodes as $node) {
+    $wrapper = entity_metadata_wrapper('node', $node);
+    $nodes_by_om[$wrapper->field_rotter_id->value()] = $node;
+  }
+
+  return $nodes_by_om;
+}
+
