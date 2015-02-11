@@ -5,13 +5,11 @@
  */
 
 include_once 'rotternews_base.features.inc';
-module_load_include('inc', 'rotternews_base', '/include');
-
+require_once 'include/RotterNews.inc';
 /**
  * Import news items from Rotter.net.
  */
 function rotternews_base_get_update() {
   // Get JSON data.
   $data = rotternews_get_update_JSON();
-  dpm("foooo");
 }
