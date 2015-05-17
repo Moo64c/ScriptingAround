@@ -1,0 +1,6 @@
+name = Rotternews RESTFul
+core = 7.x
+package = Rotternews
+dependencies[] = restful
+
+files[] = plugins/restful/node/RotternewsEntityBaseNode.php

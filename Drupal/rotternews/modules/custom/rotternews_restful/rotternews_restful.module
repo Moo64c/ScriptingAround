@@ -1,0 +1,53 @@
+<?php
+/**
+ * @file
+<<<<<<< HEAD
+ * Code for the restful feature.
+=======
+ * Code for the RESTful integration.
+>>>>>>> origin/hedley
+ */
+
+if (!drupal_is_cli()) {
+  header('Access-Control-Allow-Origin: *');
+  header('Access-Control-Allow-Credentials: true');
+  header('Access-Control-Allow-Headers: Authorization, access-token');
+}
+
+/**
+ * Implements hook_ctools_plugin_directory().
+ */
+function rotternews_restful_ctools_plugin_directory($module, $plugin) {
+  if ($module == 'restful') {
+    return 'plugins/' . $plugin;
+  }
+}
+
+/**
+ * Implements hook_entity_property_info_alter().
+ *
+ * Allow non-administrators to set status of nodes.
+ */
+function rotternews_restful_entity_property_info_alter(&$info) {
+  if (!empty($info['node']['properties']['status']['setter permission'])) {
+    unset($info['node']['properties']['status']['setter permission']);
+  }
+}
+
+/**
+ * Implementation of hook_query_TAG_alter().
+ *
+ * Create an "OR" condition in which we filter entities which has end-date bigger than the desired value
+ * or the end-date value equals the start-date value, which means it's empty.
+ */
+function rotternews_restful_query_empty_end_date_alter(SelectQuery &$query) {
+  $conditions = &$query->conditions();
+
+  $value = $conditions[1]['value'];
+  $or = db_or()
+    ->condition('field_data_field_date1.field_date_value2',  $value, '>=')
+    ->where('field_data_field_date1.field_date_value2 = field_data_field_date0.field_date_value');
+  $query->condition($or);
+
+  unset($conditions[1]);
+}

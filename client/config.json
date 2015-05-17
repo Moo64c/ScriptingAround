@@ -1,0 +1,10 @@
+{
+  "development": {
+    "backend": "http://localhost/ScriptingAround/Drupal/www",
+    "debugUiRouter": true
+  },
+  "production": {
+    "backend": "https://example.com",
+    "debugUiRouter": false
+  }
+}
