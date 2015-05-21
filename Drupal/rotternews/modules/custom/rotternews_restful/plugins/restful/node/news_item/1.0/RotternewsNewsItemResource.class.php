@@ -18,6 +18,19 @@ class RotternewsNewsItemResource extends \RotternewsEntityBaseNode {
       'property' => 'nid',
     );
 
+    $public_fields['body'] = array(
+      'property' => 'body',
+      'sub_property' => 'value',
+    );
+
+    $public_fields['om'] = array(
+      'property' => 'field_rotter_id',
+    );
+
+    $public_fields['created'] = array(
+      'property' => 'created',
+    );
+
     return $public_fields;
   }
 
@@ -31,14 +44,7 @@ class RotternewsNewsItemResource extends \RotternewsEntityBaseNode {
     $query = parent::getEntityFieldQuery();
     $request = $this->getRequest();
 
-    if (!empty($request['year']) && !empty($request['month'])) {
-      $start_timestamp =  $request['year'] . '-' . $request['month'] . '-01'. ' 00:00:00';
-      $end_timestamp = date('Y-m-d 00:00:00', strtotime('+1 month', strtotime($start_timestamp)));
-      $query
-        ->fieldCondition('field_date', 'value', $end_timestamp, '<=')
-        ->fieldCondition('field_date', 'value2', $start_timestamp, '>=')
-        ->addTag('empty_end_date');
-    }
+    $query->propertyOrderBy('created', 'DESC');
 
     return $query;
   }

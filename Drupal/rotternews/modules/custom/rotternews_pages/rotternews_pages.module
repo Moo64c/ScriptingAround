@@ -5,3 +5,24 @@
  */
 
 include_once 'rotternews_pages.features.inc';
+
+/**
+ * Implements hook_menu().
+ */
+function rotternews_pages_menu() {
+  $items['backend/rotter/update'] = array(
+    'title' => 'Update rotter',
+    'description' => 'Update rotter articles on site.',
+    'page callback' => 'rotternews_pages_update_requestor',
+    'access callback' => TRUE,
+  );
+
+  return $items;
+}
+
+/**
+ * Create a pull request node when a pull request is opened.
+ */
+function rotternews_pages_update_requestor() {
+  rotternews_base_get_update();
+}

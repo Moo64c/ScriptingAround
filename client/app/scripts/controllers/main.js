@@ -12,4 +12,10 @@ angular.module('clientApp')
     newsList.get().then(function(list) {
       $scope.list = list;
     });
+
+    $scope.toggleAll = function(e) {
+      angular.forEach($scope.list, function(value, key) {
+        value.show = e;
+      });
+    };
   });

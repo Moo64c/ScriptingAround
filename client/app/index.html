@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js">
+<html class="no-js" lang="he_IL">
   <head>
     <meta charset="utf-8">
     <title></title>
@@ -39,8 +39,9 @@
 
             <ul class="nav navbar-nav">
               <li class="active"><a href="#/live"><span class="glyphicon glyphicon-refresh"></span>Live</a></li>
+              <li><a ng-href="#/update">Update list</a></li>
+              <li><a ng-href="#/search">TODO Search Archives</a></li>
               <li><a ng-href="#/about">About</a></li>
-              <li><a ng-href="#/contact">Contact</a></li>
             </ul>
           </div>
         </div>
@@ -73,14 +74,19 @@
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/angular-timeago/src/timeAgo.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/app.js"></script>
     <script src="scripts/config.js"></script>
+    <script src="scripts/filters/unsafe.js"></script>
+    <script src="scripts/filters/dateObject.js"></script>
     <script src="scripts/services/newsList.js"></script>
+    <script src="scripts/services/updater.js"></script>
     <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/controllers/update.js"></script>
     <script src="scripts/controllers/about.js"></script>
     <!-- endbuild -->
 </body>

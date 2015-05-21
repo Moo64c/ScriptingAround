@@ -15,7 +15,7 @@ function rotternews_base_drush_help($section) {
   }
 }
 
-/**
+/**-
  * Implement hook_drush_command().
  */
 function rotternews_base_drush_command() {
@@ -42,5 +42,5 @@ function rotternews_base_drush_command() {
  * Callback function for starting the data processing.
  */
 function rotternews_base_drush_update_data() {
-  rotternews_get_update();
+  rotternews_base_get_update();
 }

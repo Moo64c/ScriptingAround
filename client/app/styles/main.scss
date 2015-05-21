@@ -12,8 +12,14 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 
 body {
   padding: 0;
+  .container {
+    direction: rtl;
+  }
 }
 
+img {
+  max-width: 100%;
+}
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
 .marketing,
@@ -87,5 +93,44 @@ body {
   /* Remove the bottom border on the jumbotron for visual effect */
   .jumbotron {
     border-bottom: 0;
+  }
+}
+
+.news-row {
+  h4 {
+    display: inline-block;
+  }
+  p {
+
+  }
+}
+
+.no-body-error {
+  width: 25px;
+}
+.animate-show {
+  line-height: 20px;
+  opacity: 1;
+  padding: 10px;
+  border: 1px solid lightgrey;
+  background: white;
+}
+
+.animate-show.ng-hide-add.ng-hide-add-active,
+.animate-show.ng-hide-remove.ng-hide-remove-active {
+  -webkit-transition: all linear 0.2s;
+  transition: all linear 0.2s;
+}
+
+.animate-show.ng-hide {
+  opacity: 0;
+  padding: 0 10px;
+  line-height: 0px;
+}
+
+.label-actions {
+  h6 {
+    margin-left: 10px;
+    float: right;
   }
 }

@@ -16,7 +16,8 @@ angular
     'config',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'yaru22.angular-timeago'
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -27,6 +28,10 @@ angular
       .when('/about', {
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl'
+      })
+      .when('/update', {
+        templateUrl: 'views/updating.html',
+        controller: 'UpdateCtrl'
       })
       .otherwise({
         redirectTo: '/'
