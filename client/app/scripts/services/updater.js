@@ -89,10 +89,6 @@ angular.module('clientApp')
         return;
       }
 
-      angular.forEach(data[0].companies, function(value, key) {
-        data[0].companies[key].id = parseInt(value.id);
-      });
-
       return data;
     }
 

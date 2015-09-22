@@ -8,9 +8,18 @@
  * Controller of the clientApp
  */
 angular.module('clientApp')
-  .controller('MainCtrl', function ($scope, newsList) {
-    newsList.get().then(function(list) {
-      $scope.list = list;
+  .controller('MainCtrl', function ($scope, newsList, $route) {
+    $scope.pageNumber = parseInt($route.current.params.pageNumber);
+
+    newsList.get($scope.pageNumber).then(function(data) {
+      $scope.list = data.data;
+      if (data.next) {
+        $scope.nextPage = data.next.href;
+      }
+      if (data.previous) {
+        $scope.prevPage = data.previous.href;
+      }
+      $scope.count = data.count;
     });
 
     $scope.toggleAll = function(e) {

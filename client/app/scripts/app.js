@@ -22,6 +22,9 @@ angular
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
+        redirectTo: '/1'
+      })
+      .when('/:pageNumber', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })

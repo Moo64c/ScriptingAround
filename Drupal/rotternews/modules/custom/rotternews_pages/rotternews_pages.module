@@ -26,6 +26,7 @@ function rotternews_pages_menu() {
 function rotternews_pages_update_requestor() {
   // Cron run handles updates from now on.
   // This is disabled.
+  print "This function has been disabled.";
   return;
 
   rotternews_base_get_update();
