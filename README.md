@@ -1,5 +1,5 @@
 # Rotternews
-Rotternews aggregator; next version with Drupal and timed updates.
+Rotternews aggregator.
 
 New live example here: http://rotternews.2fh.co/
 
