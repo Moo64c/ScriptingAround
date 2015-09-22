@@ -20,6 +20,11 @@ function rotternews_innerXML($node) {
   }
 
   $text = $doc->saveXML($frag);
+
+  // Clean a bunch of stuff we don't want.
+  $allowable_tags = RotterInfo::allowed_tags;
+  $text = strip_tags($text, $allowable_tags);
+
   $text = str_replace(array_keys(RotterInfo::$replace_strings), RotterInfo::$replace_strings, $text);
 
   return $text;
@@ -248,7 +253,7 @@ function rotternews_get_first_post($url, $id) {
         }
       }
 
-      // Add link for shadowbox before each image.
+      // Add a link to new tab for each image.
       foreach($doc->getElementsByTagName('img') as $image) {
         $image_url = $image->attributes->getNamedItem("src")->nodeValue;
         $parent =$image->parentNode;
@@ -261,18 +266,17 @@ function rotternews_get_first_post($url, $id) {
           }
         }
 
-        // Create a new image without any attributes, with shadowbox link.
+        // Rebuild the image with the link.
         $new_image = $doc->createElement('img');
         $new_image->setAttribute("src", $image_url);
 
-        $shadow_href = $doc->createElement('a');
-        $shadow_href->setAttribute("rel", "shadowbox[post-$id]");
-        $shadow_href->setAttribute("href", $image_url);
-        $shadow_href->setAttribute("class", "shadowbox-link");
+        $new_href = $doc->createElement('a');
+        $new_href->setAttribute("href", $image_url);
+        $new_href->setAttribute("target", "_blank");
         $clone = $new_image->cloneNode();
-        $shadow_href->appendChild( $clone );
+        $new_href->appendChild( $clone );
 
-        $parent->replaceChild( $shadow_href, $image );
+        $parent->replaceChild( $new_href, $image );
       };
 
       return rotternews_innerXML($table_row);

@@ -27,7 +27,12 @@ class RotterInfo {
     ':', '.', '(', ')', ",", "-", "\t", "\n", "\\", "/",
   );
 
+  public static $allowed_tags = '<img><p><h1><h2><br><a><div><object><iframe>';
+
   public static $image_removal_hints = array(
+    // Animations.
+    ".gif",
+    // Avatars etc.
     "avatar",
     "customavatars",
     "images/avatars/",
@@ -35,7 +40,6 @@ class RotterInfo {
     "emoticons",
     "signatures",
     "customprofilepics",
-    "images/spacer.gif",
     "profilepic",
     "549aa5804f857de3.jpg",
     "52ca876d7968bae3.jpg",
@@ -56,16 +60,9 @@ class RotterInfo {
     // Remove internal styles.
     'style="' => '"',
     'color="' => '"',
-    '<b>' => '',
     'width="' => 'width="100%" "',
     'width:' => 'width:100%;',
     // Width thingy.
-    '<font>' => "",
-    '</font>' => '',
-    '<td>' => "",
-    '</td>' => '',
-    '<table>' => "",
-    '</table>' => '',
     'size=' => '',
   );
 
