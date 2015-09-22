@@ -56,8 +56,8 @@ function rotternews_pages_filter_default_formats() {
   );
 
   // Exported format: Not filtered.
-  $formats['not_filtered'] = array(
-    'format' => 'not_filtered',
+  $formats['no_filter'] = array(
+    'format' => 'no_filter',
     'name' => 'Not filtered',
     'cache' => 1,
     'status' => 1,

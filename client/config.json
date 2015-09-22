@@ -4,7 +4,7 @@
     "debugUiRouter": true
   },
   "production": {
-    "backend": "https://example.com",
+    "backend": "http://php-rotternews.rhcloud.com/",
     "debugUiRouter": false
   }
 }
