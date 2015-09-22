@@ -1,6 +1,6 @@
 name = Rotternews pages
 core = 7.x
-package = Rotter
+package = Rotternews
 version = 7.x-1.0
 project = rotternews_pages
 dependencies[] = ctools
@@ -29,4 +29,3 @@ features[variable][] = menu_parent_news_item
 features[variable][] = node_options_news_item
 features[variable][] = node_preview_news_item
 features[variable][] = node_submitted_news_item
-mtime = 1423616073
