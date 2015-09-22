@@ -1,4 +1,4 @@
-# Rotternews drupal Directory.
+# Rotternews Drupal Directory.
 Provides backend for Rotternews.
 
 Requirements:
