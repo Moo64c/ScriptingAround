@@ -1,5 +1,5 @@
-name = CRI
-description = CRI
+name = Rotternews
+description = Rotternews drupal backend
 version = VERSION
 core = 7.x
 
@@ -50,6 +50,7 @@ dependencies[] = views_bulk_operations
 dependencies[] = views_content
 
 ; Custom modules
+dependencies[] = rotternews
 dependencies[] = rotternews_base
 dependencies[] = rotternews_pages
 dependencies[] = rotternews_restful

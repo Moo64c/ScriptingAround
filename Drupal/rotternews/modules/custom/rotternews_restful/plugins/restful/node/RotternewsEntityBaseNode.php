@@ -31,7 +31,7 @@ abstract class RotternewsEntityBaseNode extends \RestfulEntityBaseNode {
     unset($public_fields['self']);
 
     // Set range.
-    $this->setRange(10);
+    $this->setRange(20);
 
     return $public_fields;
   }
