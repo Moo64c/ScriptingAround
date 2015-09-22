@@ -7,6 +7,7 @@
     <a ng-if="nextPage" class="next-page" ng-href="#/{{pageNumber+1}}">עמוד הבא <i class="fa fa-arrow-circle-left"></i></a>
   </div>
 
+  <!-- TODO: Figure out why link isn't showing up-->
   <div ng-repeat="obj in list" class="news-row">
     <h4>
       <img class="no-body-error" src="../images/hss-alert-icon.png" ng-show="!obj.body">
@@ -17,7 +18,7 @@
           <a href="{{'http://rotter.net/forum/scoops1/' + obj.om+ '.shtml'}}" target="_blank">
             <img src="images/external.png" class="external-image">
           </a>
-          <a href="{{obj.link}}" target="_blank" >
+          <a href="{{obj.link ? obj.link : 'http://php-rotternews.rhcloud.com/node/' + obj.id }}" target="_blank" >
             <img src="images/internal.png" class="external-image">
           </a>
         </h6>

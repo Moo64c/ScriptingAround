@@ -22,9 +22,12 @@ angular
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        redirectTo: '/1'
+        redirectTo: '/live/1'
       })
-      .when('/:pageNumber', {
+      .when('/live', {
+        redirectTo: '/live/1'
+      })
+      .when('/live/:pageNumber', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
@@ -32,11 +35,7 @@ angular
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl'
       })
-      .when('/update', {
-        templateUrl: 'views/updating.html',
-        controller: 'UpdateCtrl'
-      })
       .otherwise({
-        redirectTo: '/'
+        redirectTo: '/live/1'
       });
   });

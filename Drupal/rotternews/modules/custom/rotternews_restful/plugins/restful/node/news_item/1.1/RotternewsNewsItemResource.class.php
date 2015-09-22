@@ -48,7 +48,7 @@ class RotternewsNewsItemResource extends \RotternewsEntityBaseNode {
   }
 
   /**
-   * Gets the value of the membership entity's field_receive_notifications.
+   * Get a URL to the node.
    */
   protected function getNodeUrl($wrapper) {
     return url('node/' . $wrapper->getIdentifier(), array('absolute' => TRUE));

@@ -152,10 +152,13 @@ img {
     padding: 5px;
     color: white;
     background: #23527c;
-    cursor: pointer
   }
 
   .next-page {
     float: left;
   }
+}
+
+a {
+  cursor: pointer;
 }
