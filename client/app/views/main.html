@@ -1,11 +1,9 @@
 <div class="row marketing">
+
   <div class="app-actions">
+    <a ng-if="prevPage" class="previous-page" ng-href="#/{{pageNumber-1}}"><i class="fa fa-arrow-circle-right"></i> עמוד קודם</a>
     <a ng-if="list" ng-click="toggleAll(true)"><i class="fa fa-plus-square-o"></i> פתח הכל</a>
     <a ng-if="list" ng-click="toggleAll(false)"><i class="fa fa-minus-square-o"></i> סגור הכל</a>
-  </div>
-
-  <div class="pagination">
-    <a ng-if="prevPage" class="previous-page" ng-href="#/{{pageNumber-1}}"><i class="fa fa-arrow-circle-right"></i> עמוד קודם</a>
     <a ng-if="nextPage" class="next-page" ng-href="#/{{pageNumber+1}}">עמוד הבא <i class="fa fa-arrow-circle-left"></i></a>
   </div>
 

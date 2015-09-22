@@ -144,19 +144,7 @@ img {
   }
 }
 
-.app-actions {
-
-  a {
-    margin-left: 20px;
-    border-radius: 5px;
-    padding: 5px;
-    color: white;
-    background: #23527c;
-    cursor: pointer;
-  }
-}
-
-.pagination {
+.app-actions, .pagination {
   width: 100%;
 
   a {
@@ -164,6 +152,7 @@ img {
     padding: 5px;
     color: white;
     background: #23527c;
+    cursor: pointer
   }
 
   .next-page {
