@@ -8,12 +8,30 @@
 abstract class RotternewsEntityBaseNode extends \RestfulEntityBaseNode {
 
   /**
+   * Overrides \RestfulDataProviderEFQ::controllersInfo().
+   */
+  public static function controllersInfo() {
+    return array(
+      '' => array(
+        // GET returns a list of entities.
+        \RestfulInterface::GET => 'getList',
+      ),
+      '^.*$' => array(
+        \RestfulInterface::GET => 'viewEntities',
+      ),
+    );
+  }
+
+  /**
    * Overrides \RestfulEntityBaseNode::publicFieldsInfo().
    */
   public function publicFieldsInfo() {
     $public_fields = parent::publicFieldsInfo();
 
     unset($public_fields['self']);
+
+    // Set range.
+    $this->setRange(10);
 
     return $public_fields;
   }

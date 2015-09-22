@@ -7,7 +7,6 @@
 
 class RotternewsNewsItemResource extends \RotternewsEntityBaseNode {
 
-
   /**
    * Overrides \RestfulEntityBaseNode::publicFieldsInfo().
    */
