@@ -22,8 +22,7 @@ function rotternews_innerXML($node) {
   $text = $doc->saveXML($frag);
 
   // Clean a bunch of stuff we don't want.
-  $allowable_tags = RotterInfo::$allowed_tags;
-  $text = strip_tags($text, $allowable_tags);
+  $text = strip_tags($text, RotterInfo::$allowed_tags);
 
   $text = str_replace(array_keys(RotterInfo::$replace_strings), RotterInfo::$replace_strings, $text);
 
