@@ -68,7 +68,6 @@ img {
 
 /* Supporting marketing content */
 .marketing {
-  margin: 40px 0;
 
   p + h4 {
     margin-top: 28px;
@@ -95,15 +94,6 @@ img {
   /* Remove the bottom border on the jumbotron for visual effect */
   .jumbotron {
     border-bottom: 0;
-  }
-}
-
-.news-row {
-  h4 {
-    display: inline-block;
-  }
-  p {
-
   }
 }
 
@@ -134,5 +124,49 @@ img {
   h6 {
     margin-left: 10px;
     float: right;
+  }
+}
+
+.external-image {
+  width: 20px;
+}
+
+
+.news-row {
+
+  h4 {
+    display: inline-block;
+  }
+
+  h4, h6 {
+    margin-bottom: 0;
+    margin-top: 5px;
+  }
+}
+
+.app-actions {
+
+  a {
+    margin-left: 20px;
+    border-radius: 5px;
+    padding: 5px;
+    color: white;
+    background: #23527c;
+    cursor: pointer;
+  }
+}
+
+.pagination {
+  width: 100%;
+
+  a {
+    border-radius: 5px;
+    padding: 5px;
+    color: white;
+    background: #23527c;
+  }
+
+  .next-page {
+    float: left;
   }
 }

@@ -1,7 +1,7 @@
 <div class="row marketing">
   <div class="app-actions">
-    <a ng-if="list" ng-href="#/" ng-click="toggleAll(true)"><i class="fa fa-plus-square-o"></i> פתח הכל</a>
-    <a ng-if="list" ng-href="#/" ng-click="toggleAll(false)"><i class="fa fa-minus-square-o"></i> סגור הכל</a>
+    <a ng-if="list" ng-click="toggleAll(true)"><i class="fa fa-plus-square-o"></i> פתח הכל</a>
+    <a ng-if="list" ng-click="toggleAll(false)"><i class="fa fa-minus-square-o"></i> סגור הכל</a>
   </div>
 
   <div class="pagination">
@@ -15,10 +15,15 @@
       <a ng-click="obj.show = !obj.show">
         {{ obj.label }} </a>
       <div class="label-actions">
-        <h6>{{ obj.created | dateObject | timeAgo}}</h6>
         <h6>
-          <a href="http://rotter.net/forum/scoops1/{{obj.om}}.shtml" target="_blank">original</a>
+          <a href="{{'http://rotter.net/forum/scoops1/' + obj.om+ '.shtml'}}" target="_blank">
+            <img src="images/external.png" class="external-image">
+          </a>
+          <a href="{{obj.link}}" target="_blank" >
+            <img src="images/internal.png" class="external-image">
+          </a>
         </h6>
+        <h6>{{ obj.created | dateObject | timeAgo}}</h6>
       </div>
     </h4>
     <p class="animate-show" ng-show="obj.show" ng-bind-html="obj.body | unsafe">

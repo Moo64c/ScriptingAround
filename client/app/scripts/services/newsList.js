@@ -37,7 +37,6 @@ angular.module('clientApp')
     $http({
       method: 'GET',
       url: url,
-      query: {'page':pageNumber},
       transformResponse: prepareResponse
     }).success(function(response) {
       deferred.resolve(response);

@@ -13,6 +13,7 @@ angular.module('clientApp')
 
     newsList.get($scope.pageNumber).then(function(data) {
       $scope.list = data.data;
+
       if (data.next) {
         $scope.nextPage = data.next.href;
       }

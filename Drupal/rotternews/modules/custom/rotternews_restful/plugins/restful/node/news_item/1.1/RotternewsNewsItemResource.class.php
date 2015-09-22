@@ -30,6 +30,10 @@ class RotternewsNewsItemResource extends \RotternewsEntityBaseNode {
       'property' => 'created',
     );
 
+    $public_fields['link'] = array(
+      'callback' => array($this, 'getNodeUrl'),
+    );
+
     return $public_fields;
   }
 
@@ -41,5 +45,12 @@ class RotternewsNewsItemResource extends \RotternewsEntityBaseNode {
     $query->propertyOrderBy('created', 'DESC');
 
     return $query;
+  }
+
+  /**
+   * Gets the value of the membership entity's field_receive_notifications.
+   */
+  protected function getNodeUrl($wrapper) {
+    return url('node/' . $wrapper->getIdentifier(), array('absolute' => TRUE));
   }
 }
