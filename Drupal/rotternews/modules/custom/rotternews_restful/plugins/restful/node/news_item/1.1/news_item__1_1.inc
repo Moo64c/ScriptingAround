@@ -17,8 +17,8 @@ $plugin = array(
       // Rate limit is cleared every day.
       'period' => new \DateInterval('PT5M'),
       'limits' => array(
-        'authenticated user' => 30,
-        'anonymous user' => 5,
+        'authenticated user' => 1000,
+        'anonymous user' => 100,
         'administrator' => \RestfulRateLimitManager::UNLIMITED_RATE_LIMIT,
       ),
     ),

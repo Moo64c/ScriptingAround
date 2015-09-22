@@ -4,7 +4,10 @@
     <a ng-if="list" ng-href="#/" ng-click="toggleAll(false)"><i class="fa fa-minus-square-o"></i> סגור הכל</a>
   </div>
 
-
+  <div class="pagination">
+    <a ng-if="prevPage" class="previous-page" ng-href="#/{{pageNumber-1}}"><i class="fa fa-arrow-circle-right"></i> עמוד קודם</a>
+    <a ng-if="nextPage" class="next-page" ng-href="#/{{pageNumber+1}}">עמוד הבא <i class="fa fa-arrow-circle-left"></i></a>
+  </div>
 
   <div ng-repeat="obj in list" class="news-row">
     <h4>
@@ -22,10 +25,9 @@
     </p>
   </div>
 
-
   <div class="pagination">
-    <a ng-if="prevPage" ng-href="#/{{pageNumber-1}}"><i class="fa fa-arrow-circle-right"></i> עמוד קודם</a>
-    <a ng-if="nextPage" ng-href="#/{{pageNumber+1}}">עמוד הבא <i class="fa fa-arrow-circle-left"></i></a>
+    <a ng-if="prevPage" class="previous-page" ng-href="#/{{pageNumber-1}}"><i class="fa fa-arrow-circle-right"></i> עמוד קודם</a>
+    <a ng-if="nextPage" class="next-page" ng-href="#/{{pageNumber+1}}">עמוד הבא <i class="fa fa-arrow-circle-left"></i></a>
   </div>
 
 </div>
