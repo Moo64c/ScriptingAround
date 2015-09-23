@@ -309,7 +309,7 @@ function _rotternews_remove_attributes(DOMDocument &$doc, $names) {
  *  Error message.
  */
 function _rotternews_get_error_message($code) {
-  return RotterInfo::get_error_message($code);
+  return RotterInfo::_get_error_message($code);
 }
 
 /**
