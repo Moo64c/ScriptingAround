@@ -44,7 +44,7 @@ function rotternews_get_update_data($sorting_method = "", $request_url = ROTTER_
   }
 
   if (!$doc = rotternews_get_DOM_from_url($request_url)) {
-    return _rotternews_get_error_message(0);
+    return rotternews_base_handle_error(0, array('@url' => $request_url));
   }
   $load_time = time();
 

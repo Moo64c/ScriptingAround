@@ -140,3 +140,24 @@ function _rotternews_base_save_node($node, $data, $get_first_post = TRUE) {
 
   return $wrapper->value();
 }
+
+/**
+ * Handle Rotternews errors.
+ *
+ * @param int $code
+ *  Error code.
+ */
+function rotternews_base_handle_error($code = 0, $args = array()) {
+  // Get message.
+  $message = _rotternews_get_error_message($code, $args);
+
+  if (drupal_is_cli()) {
+    // Error during drush call.
+    drush_print($message);
+  }
+
+  // Send message to watchdog.
+  watchdog("Rotternews", $message, array(), $severity = WATCHDOG_ERROR);
+
+  return $message;
+}

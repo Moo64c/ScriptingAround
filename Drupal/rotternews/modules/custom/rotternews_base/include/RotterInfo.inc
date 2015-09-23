@@ -68,23 +68,31 @@ class RotterInfo {
 
   /**
    * Gets an error message according to a code.
-   * @param integer
+   *
+   * @param int $code
    *  Error code.
-   * @return string
+   * @param array $args
+   *  Arguments for the expected formatted string.
+   *
+   * @return string Error message when failing to load request.
    * Error message when failing to load request.
    */
-  public static function _get_error_message($code = 0) {
-    $error_message = "Error retrieving data.";
+  public static function _get_error_message($code = 0, $args = array()) {
+    $error_message = "Rotternews error: ";
     switch ($code) {
+
+      case 1:
+        $error_message .= "Error retrieving data from @url.";
+        break;
+      case 2:
+        $error_message .= "Error parsing data.";
+        break;
+
+      case 0:
       default:
-        //TODO
+        $error_message .= "generic error.";
     }
 
-
-    return '<div class="news-container odd">
-            <div class="news-item">' .
-            $error_message .
-            '</div>
-          </div>';
+    return format_string($error_message, $args) ;
   }
 };
