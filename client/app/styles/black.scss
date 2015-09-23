@@ -1,0 +1,25 @@
+body {
+  background: black;
+  color: white !important;
+}
+
+.navbar-default {
+  background-color: #080808;
+  border-color: #efefef;
+}
+
+.news-row .animate-show {
+  border: 1px solid darkgrey;
+  background: black;
+  color: white;
+}
+.app-actions, .pagination {
+
+  a {
+    background: #55585B !important;
+  }
+}
+
+.external-image {
+  filter: brightness(300%);
+}
