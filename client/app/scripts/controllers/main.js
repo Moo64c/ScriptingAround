@@ -12,6 +12,13 @@ angular.module('clientApp')
     $scope.pageNumber = parseInt($route.current.params.pageNumber);
 
     newsList.get($scope.pageNumber).then(function(data) {
+
+      if (!data) {
+        $scope.error = "הבקשה נכשלה.";
+        $scope.count = 0;
+        return;
+      }
+
       $scope.list = data.data;
 
       if (data.next) {

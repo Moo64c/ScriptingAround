@@ -38,9 +38,14 @@ angular.module('clientApp')
       method: 'GET',
       url: url,
       transformResponse: prepareResponse
-    }).success(function(response) {
-      deferred.resolve(response);
-    });
+    })
+      .success(function(response) {
+        deferred.resolve(response);
+      })
+      .error(function(data) {
+        deferred.resolve(data);
+      }
+    );
 
     return deferred.promise;
   }
