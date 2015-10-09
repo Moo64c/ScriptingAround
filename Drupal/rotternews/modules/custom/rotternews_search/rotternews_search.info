@@ -5,6 +5,7 @@ dependencies[] = entity
 dependencies[] = search_api
 dependencies[] = search_api_page
 dependencies[] = search_api_solr
+dependencies[] = rotternews_restful
 features[features_api][] = api:2
 features[search_api_index][] = news_index
 features[search_api_page][] = search_news
