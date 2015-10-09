@@ -6,7 +6,7 @@
   "build": {
     "backend": "http://php-rotternews.rhcloud.com/",
     "debugUiRouter": false
-  }
+  },
   "production": {
     "backend": "http://php-rotternews.rhcloud.com/",
     "debugUiRouter": false
