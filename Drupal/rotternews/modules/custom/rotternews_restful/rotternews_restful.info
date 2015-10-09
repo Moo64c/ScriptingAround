@@ -2,5 +2,7 @@ name = Rotternews RESTFul
 core = 7.x
 package = Rotternews
 dependencies[] = restful
+dependencies[] = rotternews_base
+dependencies[] = rotternews_search
 
 files[] = plugins/restful/node/RotternewsEntityBaseNode.php

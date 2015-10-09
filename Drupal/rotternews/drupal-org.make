@@ -67,10 +67,16 @@ projects[purl][subdir] = "contrib"
 projects[purl][version] = "1.x-dev"
 
 projects[restful][subdir] = "contrib"
-projects[restful][download][url] = "git://github.com/Gizra/restful.git"
+projects[restful][download][url] = "git://github.com/RESTful-Drupal/restful.git"
+
+projects[restful_search_api][subdir] = "contrib"
+projects[restful_search_api][download][url] = "git://github.com/RESTful-Drupal/restful_search_api.git"
 
 projects[search_api][subdir] = "contrib"
 projects[search_api][version] = "1.13"
+
+projects[search_api_solr][subdir] = "contrib"
+projects[search_api_solr][version] = "1.7"
 
 projects[search_api_db][subdir] = "contrib"
 projects[search_api_db][version] = "1.4"
