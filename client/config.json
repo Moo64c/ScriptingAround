@@ -3,6 +3,10 @@
     "backend": "http://localhost/ScriptingAround/Drupal/www",
     "debugUiRouter": true
   },
+  "build": {
+    "backend": "http://php-rotternews.rhcloud.com/",
+    "debugUiRouter": false
+  }
   "production": {
     "backend": "http://php-rotternews.rhcloud.com/",
     "debugUiRouter": false

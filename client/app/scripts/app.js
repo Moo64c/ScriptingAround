@@ -35,6 +35,16 @@ angular
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl'
       })
+      .when('/search', {
+        redirectTo: '/search/ישראל/1'
+      })
+      .when('/search:searchString', {
+        redirectTo: '/search/:searchString/1'
+      })
+      .when('/search/:searchString/:pageNumber', {
+        templateUrl: 'views/search.html',
+        controller: 'SearchCtrl'
+      })
       .otherwise({
         redirectTo: '/live/1'
       });

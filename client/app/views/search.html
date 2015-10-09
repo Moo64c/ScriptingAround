@@ -6,12 +6,18 @@
     <a href="javascript:location.reload();">נסה שוב</a>
   </div>
 
+  <div class="search-area">
+    <form action="{{'#/search/' + searchString + '/1'}}">
+      <input ng-model="searchString" placeholder="חיפוש" type="text" id="searchString" />
+      <button type="submit">חפש</button>
+    </form>
+  </div>
 
   <div class="app-actions row">
-    <a ng-if="prevPage" class="previous-page" ng-href="#/live/{{pageNumber-1}}"><i class="fa fa-arrow-circle-right"></i>  קודם</a>
+    <a ng-if="prevPage" class="previous-page" ng-href="#/search/{{searchString}}/{{pageNumber-1}}"><i class="fa fa-arrow-circle-right"></i>  קודם</a>
     <a ng-if="list" ng-click="toggleAll(true)"><i class="fa fa-plus-square-o"></i> פתח הכל</a>
     <a ng-if="list" ng-click="toggleAll(false)"><i class="fa fa-minus-square-o"></i> סגור הכל</a>
-    <a ng-if="nextPage" class="next-page" ng-href="#/live/{{pageNumber+1}}"> הבא <i class="fa fa-arrow-circle-left"></i></a>
+    <a ng-if="nextPage" class="next-page" ng-href="#/search/{{searchString}}/{{pageNumber+1}}"> הבא <i class="fa fa-arrow-circle-left"></i></a>
   </div>
 
   <!-- TODO: Figure out why link isn't showing up-->
@@ -37,8 +43,8 @@
   </div>
 
   <div class="pagination row">
-    <a ng-if="prevPage" class="previous-page" ng-href="#/live/{{pageNumber-1}}"><i class="fa fa-arrow-circle-right"></i>  קודם</a>
-    <a ng-if="nextPage" class="next-page" ng-href="#/live/{{pageNumber+1}}"> הבא <i class="fa fa-arrow-circle-left"></i></a>
+    <a ng-if="prevPage" class="previous-page" ng-href="#/search/{{searchString}}/{{pageNumber-1}}"><i class="fa fa-arrow-circle-right"></i>  קודם</a>
+    <a ng-if="nextPage" class="next-page" ng-href="#/search/{{searchString}}/{{pageNumber+1}}"> הבא <i class="fa fa-arrow-circle-left"></i></a>
   </div>
 
 </div>
