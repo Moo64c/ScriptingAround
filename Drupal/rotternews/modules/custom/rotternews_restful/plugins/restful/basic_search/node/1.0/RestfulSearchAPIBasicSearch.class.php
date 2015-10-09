@@ -31,9 +31,27 @@ class RestfulSearchAPIBasicSearch extends \RestfulDataProviderSearchAPI implemen
         'property' => 'body',
         'sub-property' => LANGUAGE_NONE . '::0::value',
       ),
-      'title' => array(
+      'label' => array(
         'property' => 'title',
       ),
+      'om' => array(
+        'property' => 'field_rotter_id',
+        'sub-property' => LANGUAGE_NONE . '::0::value',
+      ),
+      'created' => array(
+        'property' => 'created',
+      ),
+    );
+  }
+
+  /**
+   * Override default sort.
+   */
+  public function defaultSortInfo() {
+    return array(
+      'created',
+      'relevance',
+      'om',
     );
   }
 
