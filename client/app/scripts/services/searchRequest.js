@@ -1,4 +1,4 @@
-'use strict';
+ 'use strict';
 
 /**
  * @ngdoc service
@@ -29,7 +29,7 @@ angular.module('clientApp')
    */
   function getDataFromBackend(searchString, pageNumber) {
     var deferred = $q.defer();
-    var url = Config.backend + '/api/basic_search/' + searchString  + '?page=' + pageNumber;
+    var url = Config.backend + '/api/basic_search/' + searchString  + (pageNumber > 1 ?  '?page=' + pageNumber : '');
 
     $http({
       method: 'GET',
