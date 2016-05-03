@@ -67,7 +67,7 @@ projects[purl][subdir] = "contrib"
 projects[purl][version] = "1.x-dev"
 
 projects[restful][subdir] = "contrib"
-projects[restful][download][url] = "git://github.com/RESTful-Drupal/restful.git"
+projects[restful][version] = "2.x-dev"
 
 projects[restful_search_api][subdir] = "contrib"
 projects[restful_search_api][download][url] = "git://github.com/RESTful-Drupal/restful_search_api.git"
