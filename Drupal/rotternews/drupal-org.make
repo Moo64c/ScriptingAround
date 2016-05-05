@@ -1,4 +1,4 @@
-core = 7.x
+  core = 7.x
 api = 2
 
 ; Modules
@@ -67,7 +67,11 @@ projects[purl][subdir] = "contrib"
 projects[purl][version] = "1.x-dev"
 
 projects[restful][subdir] = "contrib"
-projects[restful][version] = "2.x-dev"
+projects[restful][download][type] = "git"
+projects[restful][download][url] = "https://github.com/RESTful-Drupal/restful.git"
+projects[restful][download][branch] = "7.x-1.x"
+projects[restful][subdir] = "contrib"
+projects[restful][patch][] = "https://patch-diff.githubusercontent.com/raw/RESTful-Drupal/restful/pull/889.patch"
 
 projects[restful_search_api][subdir] = "contrib"
 projects[restful_search_api][download][url] = "git://github.com/RESTful-Drupal/restful_search_api.git"
