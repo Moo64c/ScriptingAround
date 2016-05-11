@@ -55,4 +55,3 @@ dependencies[] = rotternews
 dependencies[] = rotternews_base
 dependencies[] = rotternews_pages
 dependencies[] = rotternews_restful
-dependencies[] = rotternews_search

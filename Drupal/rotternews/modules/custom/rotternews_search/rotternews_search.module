@@ -1,7 +1,0 @@
-<?php
-/**
- * @file
- * Code for the Rotternews Search feature.
- */
-
-include_once 'rotternews_search.features.inc';

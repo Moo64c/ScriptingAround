@@ -1,4 +1,4 @@
-  core = 7.x
+core = 7.x
 api = 2
 
 ; Modules
@@ -18,7 +18,7 @@ projects[devel][subdir] = "contrib"
 projects[devel][version] = "1.5"
 
 projects[entity][subdir] = "contrib"
-projects[entity][version] = "1.5"
+projects[entity][version] = "1.7"
 
 projects[entityreference][subdir] = "contrib"
 projects[entityreference][version] = "1.1"
@@ -63,18 +63,25 @@ projects[pathauto][version] = "1.2"
 projects[pathologic][subdir] = "contrib"
 projects[pathologic][version] = "2.12"
 
+projects[plug][subdir] = "contrib"
+projects[plug][version] = "1.1"
+
 projects[purl][subdir] = "contrib"
 projects[purl][version] = "1.x-dev"
 
-projects[restful][subdir] = "contrib"
+projects[registry_autoload][subdir] = "contrib"
+projects[registry_autoload][version] = "1.3"
+
 projects[restful][download][type] = "git"
 projects[restful][download][url] = "https://github.com/RESTful-Drupal/restful.git"
 projects[restful][download][branch] = "7.x-1.x"
 projects[restful][subdir] = "contrib"
 projects[restful][patch][] = "https://patch-diff.githubusercontent.com/raw/RESTful-Drupal/restful/pull/889.patch"
 
-projects[restful_search_api][subdir] = "contrib"
+projects[restful_search_api][download][type] = "git"
 projects[restful_search_api][download][url] = "git://github.com/RESTful-Drupal/restful_search_api.git"
+projects[restful_search_api][download][branch] = "7.x-1.x"
+projects[restful_search_api][subdir] = "contrib"
 
 projects[search_api][subdir] = "contrib"
 projects[search_api][version] = "1.13"
