@@ -17,12 +17,13 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'yaru22.angular-timeago'
+    'yaru22.angular-timeago',
+    'cfp.hotkeys'
   ])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        redirectTo: '/live/1'
+        redirectTo: '/live/1',
       })
       .when('/live', {
         redirectTo: '/live/1'
@@ -33,7 +34,7 @@ angular
       })
       .when('/about', {
         templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
+        controller: 'AboutCtrl',
       })
       .when('/search', {
         redirectTo: '/search/ישראל/1'
@@ -47,5 +48,5 @@ angular
       })
       .otherwise({
         redirectTo: '/live/1'
-      });
-  });
+      })
+  })

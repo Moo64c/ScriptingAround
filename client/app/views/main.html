@@ -14,15 +14,14 @@
     <a ng-if="nextPage" class="next-page" ng-href="#/live/{{pageNumber+1}}"> הבא <i class="fa fa-arrow-circle-left"></i></a>
   </div>
 
-  <!-- TODO: Figure out why link isn't showing up-->
-  <div ng-repeat="obj in list" class="news-row row">
+  <div ng-repeat="obj in list track by $index" class="news-row row">
     <h4>
       <img class="no-body-error" src="../images/hss-alert-icon.png" ng-show="!obj.body">
-      <a ng-click="obj.show = !obj.show">
+      <a ng-click="obj.show = !obj.show; currentItem = 0">
         {{ obj.label }} </a>
       <div class="label-actions">
         <h6>
-          <a href="{{'http://rotter.net/forum/scoops1/' + obj.om+ '.shtml'}}" target="_blank">
+          <a id="item{{ $index }}" href="{{'http://rotter.net/forum/scoops1/' + obj.om+ '.shtml'}}" target="_blank">
             <img src="images/external.png" class="external-image">
           </a>
           <a href="{{obj.link ? obj.link : 'http://php-rotternews.rhcloud.com/node/' + obj.id }}" target="_blank" >
@@ -32,8 +31,8 @@
         <h6>{{ obj.created | dateObject | timeAgo}}</h6>
       </div>
     </h4>
-    <p class="animate-show" ng-show="obj.show" ng-bind-html="obj.body | unsafe">
     </p>
+    <p class="animate-show" ng-show="obj.show || currentItem == $index" ng-bind-html="obj.body | unsafe">
   </div>
 
   <div class="pagination row">
