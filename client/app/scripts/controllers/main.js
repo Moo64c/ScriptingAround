@@ -90,4 +90,6 @@ angular.module('clientApp')
         $scope.goTo("next");
       }
     });
+
+    $scope.hotkeys = hotkeys;
   });

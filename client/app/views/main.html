@@ -11,6 +11,7 @@
     <a ng-if="prevPage" class="previous-page" ng-href="#/live/{{pageNumber-1}}"><i class="fa fa-arrow-circle-right"></i>  קודם</a>
     <a ng-if="list" ng-click="toggleAll(true)"><i class="fa fa-plus-square-o"></i> פתח הכל</a>
     <a ng-if="list" ng-click="toggleAll(false)"><i class="fa fa-minus-square-o"></i> סגור הכל</a>
+    <a ng-if="list" ng-click="hotkeys.toggleCheatSheet()"><i class="fa fa-question-circle fa-5" aria-hidden="true"></i> קיצורים</a>
     <a ng-if="nextPage" class="next-page" ng-href="#/live/{{pageNumber+1}}"> הבא <i class="fa fa-arrow-circle-left"></i></a>
   </div>
 
