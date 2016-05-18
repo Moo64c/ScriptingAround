@@ -45,6 +45,8 @@ class RotterInfo {
     "52ca876d7968bae3.jpg",
     "525c058f0591e560.jpg",
     "4b1981771fe41d21.jpg",
+    "5735aa4c19907f71.jpg",
+    "5eff97a1e9c971f.jpg",
     "pmwiki/pub/images/Slig",
     "imgur.com/9wkXNzq.png",
     "rotter.net/forum/Images/oranis/set1_14.gif",
