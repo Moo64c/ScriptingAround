@@ -32,8 +32,39 @@ function rotternews_base_get_update() {
     $new_node_ids[] = $node->nid;
   }
 
+  rotternews_clean_old_nodes();
   // Set this for the next round of update.
   variable_set('rotternews_last_nodes', $new_node_ids);
+}
+
+/**
+ * Clears nodes older than a month to avoid clogged application.
+ */
+function rotternews_clean_old_nodes() {
+
+  // A month ago:
+  $month_ago_timestamp = time() - (30 * 24 * 60 * 60);
+
+  // Find nodes:
+  $query = new EntityFieldQuery();
+  $result = $query
+    ->entityCondition('entity_type', 'node')
+    ->propertyCondition('type', 'news_item', '=')
+    ->propertyCondition('created_rotter_id', $month_ago_timestamp, '<')
+    ->execute();
+
+  if (empty($result['node'])) {
+    // Nothing to delete.
+    return;
+  }
+
+  // Delete the found nodes.
+  $nids = array_keys($result['node']);
+  node_delete_multiple($nids);
+
+  if (drupal_is_cli()) {
+    drush_print('Deleted ' . sizeof($nids) . ' old nodes. (timestamp limit: ' . $month_ago_timestamp . ')');
+  }
 }
 
 /**
