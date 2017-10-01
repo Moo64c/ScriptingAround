@@ -1,14 +1,15 @@
 # Rotternews
 Rotternews aggregator.
 
-New live example here: http://rotternews.2fh.co/
+Revived the live example: http://rotternews.rf.gd/client/#/live/1
 
-Moved example host to OpenShift - cron runs update with data every minute. 
+Moved example host to InfinityFree - cron runs update with data every two minutes.
 
 ## Installation
 
 ### Backend - Drupal
 See instructions in ``Drupal/README.md`` file.
+To update, run drush command - "drush rud"
 
 ### Client
 1. ``cd`` into directory.
